@@ -1,0 +1,29 @@
+# HW13 — Multi-Modal Generative AI: IP-Adapter Image Conditioning & Audio
+# CS6078 Generative AI, University of Cincinnati, Spring 2026
+
+# --- Deep learning framework ---
+torch>=2.0.0
+
+# --- Hugging Face ecosystem ---
+diffusers>=0.25.0
+transformers>=4.36.0
+datasets>=2.14.0
+accelerate>=0.25.0
+safetensors>=0.4.0
+
+# --- Image processing ---
+Pillow>=9.5.0
+
+# --- Scientific computing ---
+numpy>=1.24.0
+scipy>=1.10.0
+matplotlib>=3.7.0
+
+# --- ASR evaluation ---
+jiwer>=3.0.0
+
+# --- Audio dataset exploration (GA19A) ---
+gradio>=4.0.0
+
+# --- Course textbook utilities ---
+genaibook>=0.1.0

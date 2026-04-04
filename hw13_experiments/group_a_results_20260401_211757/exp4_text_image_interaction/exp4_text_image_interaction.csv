@@ -1,0 +1,35 @@
+experiment,sub_experiment,script,seed,prompt,prompt_type,reference_image,ip_adapter_scale,block_level_scale_config,conditioning_mode,num_inference_steps,image_path,generation_time_sec,timestamp
+exp4,4a,GA18B,42,a beautiful sunset over the ocean,moderate,items_variation,0.0,,uniform,25,exp4_text_image_interaction/ga18b_4a_scale_0.00_seed42.png,1.415,2026-04-01 21:16:19
+exp4,4a,GA18B,123,a beautiful sunset over the ocean,moderate,items_variation,0.0,,uniform,25,exp4_text_image_interaction/ga18b_4a_scale_0.00_seed123.png,1.441,2026-04-01 21:16:21
+exp4,4a,GA18B,42,a beautiful sunset over the ocean,moderate,items_variation,0.2,,uniform,25,exp4_text_image_interaction/ga18b_4a_scale_0.20_seed42.png,1.589,2026-04-01 21:16:23
+exp4,4a,GA18B,123,a beautiful sunset over the ocean,moderate,items_variation,0.2,,uniform,25,exp4_text_image_interaction/ga18b_4a_scale_0.20_seed123.png,1.542,2026-04-01 21:16:25
+exp4,4a,GA18B,42,a beautiful sunset over the ocean,moderate,items_variation,0.4,,uniform,25,exp4_text_image_interaction/ga18b_4a_scale_0.40_seed42.png,1.635,2026-04-01 21:16:27
+exp4,4a,GA18B,123,a beautiful sunset over the ocean,moderate,items_variation,0.4,,uniform,25,exp4_text_image_interaction/ga18b_4a_scale_0.40_seed123.png,1.538,2026-04-01 21:16:29
+exp4,4a,GA18B,42,a beautiful sunset over the ocean,moderate,items_variation,0.6,,uniform,25,exp4_text_image_interaction/ga18b_4a_scale_0.60_seed42.png,1.568,2026-04-01 21:16:31
+exp4,4a,GA18B,123,a beautiful sunset over the ocean,moderate,items_variation,0.6,,uniform,25,exp4_text_image_interaction/ga18b_4a_scale_0.60_seed123.png,1.653,2026-04-01 21:16:33
+exp4,4a,GA18B,42,a beautiful sunset over the ocean,moderate,items_variation,0.8,,uniform,25,exp4_text_image_interaction/ga18b_4a_scale_0.80_seed42.png,1.632,2026-04-01 21:16:35
+exp4,4a,GA18B,123,a beautiful sunset over the ocean,moderate,items_variation,0.8,,uniform,25,exp4_text_image_interaction/ga18b_4a_scale_0.80_seed123.png,1.627,2026-04-01 21:16:38
+exp4,4a,GA18B,42,a beautiful sunset over the ocean,moderate,items_variation,1.0,,uniform,25,exp4_text_image_interaction/ga18b_4a_scale_1.00_seed42.png,1.624,2026-04-01 21:16:40
+exp4,4a,GA18B,123,a beautiful sunset over the ocean,moderate,items_variation,1.0,,uniform,25,exp4_text_image_interaction/ga18b_4a_scale_1.00_seed123.png,1.611,2026-04-01 21:16:42
+exp4,4b,GA18B,42,scene,minimal,items_variation,0.5,,uniform,25,exp4_text_image_interaction/ga18b_4b_prompt_minimal_seed42.png,1.585,2026-04-01 21:16:44
+exp4,4b,GA18B,123,scene,minimal,items_variation,0.5,,uniform,25,exp4_text_image_interaction/ga18b_4b_prompt_minimal_seed123.png,1.565,2026-04-01 21:16:46
+exp4,4b,GA18B,42,a beautiful sunset over the ocean,moderate,items_variation,0.5,,uniform,25,exp4_text_image_interaction/ga18b_4b_prompt_moderate_seed42.png,1.509,2026-04-01 21:16:48
+exp4,4b,GA18B,123,a beautiful sunset over the ocean,moderate,items_variation,0.5,,uniform,25,exp4_text_image_interaction/ga18b_4b_prompt_moderate_seed123.png,1.568,2026-04-01 21:16:50
+exp4,4b,GA18B,42,"a photorealistic panoramic view of a dramatic sunset over a calm tropical ocean, vivid orange and purple sky, detailed 8k",detailed,items_variation,0.5,,uniform,25,exp4_text_image_interaction/ga18b_4b_prompt_detailed_seed42.png,1.526,2026-04-01 21:16:52
+exp4,4b,GA18B,123,"a photorealistic panoramic view of a dramatic sunset over a calm tropical ocean, vivid orange and purple sky, detailed 8k",detailed,items_variation,0.5,,uniform,25,exp4_text_image_interaction/ga18b_4b_prompt_detailed_seed123.png,1.58,2026-04-01 21:16:54
+exp4,4c,GA18B,42,household items on a table,compatible,items_variation,0.5,,uniform,25,exp4_text_image_interaction/ga18b_4c_prompt_compatible_seed42.png,1.59,2026-04-01 21:16:56
+exp4,4c,GA18B,123,household items on a table,compatible,items_variation,0.5,,uniform,25,exp4_text_image_interaction/ga18b_4c_prompt_compatible_seed123.png,1.56,2026-04-01 21:16:58
+exp4,4c,GA18B,42,a mountain landscape at sunset,incompatible,items_variation,0.5,,uniform,25,exp4_text_image_interaction/ga18b_4c_prompt_incompatible_seed42.png,1.493,2026-04-01 21:17:00
+exp4,4c,GA18B,123,a mountain landscape at sunset,incompatible,items_variation,0.5,,uniform,25,exp4_text_image_interaction/ga18b_4c_prompt_incompatible_seed123.png,1.628,2026-04-01 21:17:02
+exp4,4c,GA18B,42,an abstract painting,neutral,items_variation,0.5,,uniform,25,exp4_text_image_interaction/ga18b_4c_prompt_neutral_seed42.png,1.525,2026-04-01 21:17:04
+exp4,4c,GA18B,123,an abstract painting,neutral,items_variation,0.5,,uniform,25,exp4_text_image_interaction/ga18b_4c_prompt_neutral_seed123.png,1.518,2026-04-01 21:17:06
+exp4,4d,GA18C,42,a cat inside of a box,cat,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",block,25,exp4_text_image_interaction/ga18c_4d_prompt_cat_seed42.png,1.447,2026-04-01 21:17:07
+exp4,4d,GA18C,123,a cat inside of a box,cat,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",block,25,exp4_text_image_interaction/ga18c_4d_prompt_cat_seed123.png,1.427,2026-04-01 21:17:09
+exp4,4d,GA18C,42,a beautiful sunset over the ocean,sunset,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",block,25,exp4_text_image_interaction/ga18c_4d_prompt_sunset_seed42.png,1.428,2026-04-01 21:17:11
+exp4,4d,GA18C,123,a beautiful sunset over the ocean,sunset,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",block,25,exp4_text_image_interaction/ga18c_4d_prompt_sunset_seed123.png,1.427,2026-04-01 21:17:13
+exp4,4e,GA18B,42,a cat inside of a box,matched_content,mamoeiro,0.5,,uniform,25,exp4_text_image_interaction/ga18b_4e_mode_uniform_seed42.png,1.522,2026-04-01 21:17:15
+exp4,4e,GA18C,42,a cat inside of a box,matched_content,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",block,25,exp4_text_image_interaction/ga18c_4e_mode_block_seed42.png,1.422,2026-04-01 21:17:17
+exp4,4e,GA18B,123,a cat inside of a box,matched_content,mamoeiro,0.5,,uniform,25,exp4_text_image_interaction/ga18b_4e_mode_uniform_seed123.png,1.605,2026-04-01 21:17:19
+exp4,4e,GA18C,123,a cat inside of a box,matched_content,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",block,25,exp4_text_image_interaction/ga18c_4e_mode_block_seed123.png,1.425,2026-04-01 21:17:21
+exp4,4e,GA18B,456,a cat inside of a box,matched_content,mamoeiro,0.5,,uniform,25,exp4_text_image_interaction/ga18b_4e_mode_uniform_seed456.png,1.533,2026-04-01 21:17:23
+exp4,4e,GA18C,456,a cat inside of a box,matched_content,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",block,25,exp4_text_image_interaction/ga18c_4e_mode_block_seed456.png,1.452,2026-04-01 21:17:24

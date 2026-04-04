@@ -1,0 +1,3 @@
+experiment,script,task_type,seed,prompt,ip_adapter_scale,num_inference_steps,model,reference_image,input_text,output_path,generation_time_sec,timestamp
+exp1,GA18B,image_variation,42,,0.8,25,stabilityai/stable-diffusion-xl-base-1.0 + h94/IP-Adapter,items_variation,,exp1_baselines/ga18b_baseline_default_seed42.png,3.428,2026-04-01 21:13:09
+exp1,GA18C,style_transfer,42,a cat inside of a box,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",25,stabilityai/stable-diffusion-xl-base-1.0 + h94/IP-Adapter,mamoeiro,,exp1_baselines/ga18c_baseline_default_seed42.png,1.42,2026-04-01 21:13:10

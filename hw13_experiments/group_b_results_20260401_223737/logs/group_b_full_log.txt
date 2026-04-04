@@ -1,0 +1,547 @@
+
+============================================================
+[SESSION START] 2026-04-01T21:58:29.766609
+============================================================
+[NOTEBOOK] Starting Group B full run
+
+============================================================
+[SESSION END] 2026-04-01T21:58:29.767630
+============================================================
+
+============================================================
+[SESSION START] 2026-04-01T22:12:09.440739
+============================================================
+[NOTEBOOK] Starting Group B full run
+
+============================================================
+[GROUP B] Starting full ASR workflow
+[GROUP B] Output root: /content/drive/MyDrive/kamp_hw13/hw13_experiments
+[CSV] Initialized: /content/drive/MyDrive/kamp_hw13/hw13_experiments/exp5_ga19b_asr/exp5_ga19b_asr.csv
+[CHECKPOINT] Loaded: last completed = Group A complete
+[GROUP B] Resuming from checkpoint. Completed labels: []
+/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_auth.py:94: UserWarning: 
+The secret `HF_TOKEN` does not exist in your Colab secrets.
+To authenticate with the Hugging Face Hub, create a token in your settings tab (https://huggingface.co/settings/tokens), set it as secret in your Google Colab and restart your session.
+You will be able to reuse this secret in all of your notebooks.
+Please note that authentication is recommended but still optional to access public models or datasets.
+  warnings.warn(
+[GROUP B] Exp 1 GA19A: Dataset inspection printout
+Dataset({
+    features: ['path', 'audio', 'transcription', 'english_transcription', 'intent_class', 'lang_id'],
+    num_rows: 654
+})
+{'path': 'en-AU~PAY_BILL/response_4.wav', 'audio': <datasets.features._torchcodec.AudioDecoder object at 0x79a3bc389010>, 'transcription': 'I would like to pay my electricity bill using my card can you please assist', 'english_transcription': 'I would like to pay my electricity bill using my card can you please assist', 'intent_class': 13, 'lang_id': 2}
+pay_bill
+Dataset({
+    features: ['path', 'audio', 'transcription', 'intent_class'],
+    num_rows: 654
+})
+[GROUP B] Example 0 audio: rate=8000 Hz, duration=7.802s
+[CHECKPOINT] Saved: Group B exp1_ga19a
+[GROUP B] Exp 1 GA19B: Default ASR baseline
+
+============================================================
+[SESSION END] 2026-04-01T22:12:19.861834
+============================================================
+
+============================================================
+[SESSION START] 2026-04-01T22:14:55.649189
+============================================================
+[NOTEBOOK] Starting Group B full run
+
+============================================================
+[GROUP B] Starting full ASR workflow
+[GROUP B] Output root: /content/drive/MyDrive/kamp_hw13/hw13_experiments
+[CHECKPOINT] Loaded: last completed = Group B exp1_ga19a
+[GROUP B] Resuming from checkpoint. Completed labels: ['exp1_ga19a']
+[GROUP B] Skipping Exp 1 GA19A dataset inspection (already completed)
+[GROUP B] Exp 1 GA19B: Default ASR baseline
+[GROUP B] Loaded baseline ASR pipeline: facebook/wav2vec2-base-960h on device 0
+[VRAM] Unloaded: ASR baseline facebook/wav2vec2-base-960h
+
+============================================================
+[SESSION END] 2026-04-01T22:14:58.761657
+============================================================
+
+============================================================
+[SESSION START] 2026-04-01T22:22:43.002235
+============================================================
+[NOTEBOOK] Starting Group B full run
+
+============================================================
+[GROUP B] Starting full ASR workflow
+[GROUP B] Output root: /content/drive/MyDrive/kamp_hw13/hw13_experiments
+[CHECKPOINT] Loaded: last completed = Group B exp1_ga19a
+[GROUP B] Resuming from checkpoint. Completed labels: ['exp1_ga19a']
+/usr/local/lib/python3.12/dist-packages/huggingface_hub/utils/_auth.py:104: UserWarning: 
+Error while fetching `HF_TOKEN` secret value from your vault: 'Requesting secret HF_TOKEN timed out. Secrets can only be fetched when running from the Colab UI.'.
+You are not authenticated with the Hugging Face Hub in this notebook.
+If the error persists, please let us know by opening an issue on GitHub (https://github.com/huggingface/huggingface_hub/issues/new).
+  warnings.warn(
+[GROUP B] Skipping Exp 1 GA19A dataset inspection (already completed)
+[GROUP B] Exp 1 GA19B: Default ASR baseline
+
+============================================================
+[SESSION END] 2026-04-01T22:23:05.693763
+============================================================
+
+============================================================
+[SESSION START] 2026-04-01T22:27:16.039191
+============================================================
+[NOTEBOOK] Starting Group B full run
+
+============================================================
+[GROUP B] Starting full ASR workflow
+[GROUP B] Output root: /content/drive/MyDrive/kamp_hw13/hw13_experiments
+[CHECKPOINT] Loaded: last completed = Group B exp1_ga19a
+[GROUP B] Resuming from checkpoint. Completed labels: ['exp1_ga19a']
+[GROUP B] Skipping Exp 1 GA19A dataset inspection (already completed)
+[GROUP B] Exp 1 GA19B: Default ASR baseline
+
+============================================================
+[SESSION END] 2026-04-01T22:27:18.823907
+============================================================
+
+============================================================
+[SESSION START] 2026-04-01T22:28:34.675245
+============================================================
+[NOTEBOOK] Starting Group B full run
+
+============================================================
+[GROUP B] Starting full ASR workflow
+[GROUP B] Output root: /content/drive/MyDrive/kamp_hw13/hw13_experiments
+[CHECKPOINT] Loaded: last completed = Group B exp1_ga19a
+[GROUP B] Resuming from checkpoint. Completed labels: ['exp1_ga19a']
+[GROUP B] Skipping Exp 1 GA19A dataset inspection (already completed)
+[GROUP B] Exp 1 GA19B: Default ASR baseline
+[GROUP B] Loaded baseline ASR pipeline: facebook/wav2vec2-base-960h on device 0
+[VRAM] Unloaded: ASR baseline facebook/wav2vec2-base-960h
+
+============================================================
+[SESSION END] 2026-04-01T22:28:42.922843
+============================================================
+
+============================================================
+[SESSION START] 2026-04-01T22:29:19.491331
+============================================================
+[NOTEBOOK] Starting Group B full run
+
+============================================================
+[GROUP B] Starting full ASR workflow
+[GROUP B] Output root: /content/drive/MyDrive/kamp_hw13/hw13_experiments
+[CHECKPOINT] Loaded: last completed = Group B exp1_ga19a
+[GROUP B] Resuming from checkpoint. Completed labels: ['exp1_ga19a']
+[GROUP B] Skipping Exp 1 GA19A dataset inspection (already completed)
+[GROUP B] Exp 1 GA19B: Default ASR baseline
+[GROUP B] Loaded baseline ASR pipeline: facebook/wav2vec2-base-960h on device 0
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=114: 1.153s
+[GROUP B] Baseline transcription: MHAVEN E SHOES WITH THE ON MY BANKING APLE AT SHOR IT'S WRONG  TUT WHEN I TRY TO LOG IN IT KICKS CRASHING SO WHAT I'VE DONE HIS OVE TO LATED IT AND WING TOLED IT BUT IT STILL DOS THE FAINTING AND IT'S NOT WORKING AH IS THERE ANY WAY THAT YO CAN CALL ME BACK AN ERSYST ME THANK YOU
+[VRAM] Unloaded: ASR baseline facebook/wav2vec2-base-960h
+[CHECKPOINT] Saved: Group B exp1_ga19b
+[GROUP B] Exp 5A: Multi-model comparison with facebook/wav2vec2-base-960h
+[GROUP B] Loaded ASR pipeline: facebook/wav2vec2-base-960h on device 0
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=114: 0.030s
+[GROUP B] 5A sample=114 model=facebook/wav2vec2-base-960h WER=0.459 CER=0.2123
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=25: 0.066s
+[GROUP B] 5A sample=25 model=facebook/wav2vec2-base-960h WER=0.1818 CER=0.1136
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=281: 0.024s
+[GROUP B] 5A sample=281 model=facebook/wav2vec2-base-960h WER=0.0 CER=0.0
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=250: 0.027s
+[GROUP B] 5A sample=250 model=facebook/wav2vec2-base-960h WER=0.6875 CER=0.3896
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=228: 0.028s
+[GROUP B] 5A sample=228 model=facebook/wav2vec2-base-960h WER=0.0 CER=0.0
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=142: 0.033s
+[GROUP B] 5A sample=142 model=facebook/wav2vec2-base-960h WER=0.381 CER=0.2182
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=104: 0.024s
+[GROUP B] 5A sample=104 model=facebook/wav2vec2-base-960h WER=0.25 CER=0.05
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=558: 0.033s
+[GROUP B] 5A sample=558 model=facebook/wav2vec2-base-960h WER=0.3636 CER=0.1912
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=89: 0.031s
+[GROUP B] 5A sample=89 model=facebook/wav2vec2-base-960h WER=0.6154 CER=0.2857
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=604: 0.034s
+[GROUP B] 5A sample=604 model=facebook/wav2vec2-base-960h WER=0.5862 CER=0.2745
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=432: 0.028s
+[GROUP B] 5A sample=432 model=facebook/wav2vec2-base-960h WER=0.35 CER=0.1714
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=32: 0.027s
+[GROUP B] 5A sample=32 model=facebook/wav2vec2-base-960h WER=0.2222 CER=0.1628
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=30: 0.024s
+[GROUP B] 5A sample=30 model=facebook/wav2vec2-base-960h WER=1.5 CER=0.6667
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=95: 0.033s
+[GROUP B] 5A sample=95 model=facebook/wav2vec2-base-960h WER=0.4857 CER=0.2486
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=223: 0.025s
+[GROUP B] 5A sample=223 model=facebook/wav2vec2-base-960h WER=0.6 CER=0.3182
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=238: 0.024s
+[GROUP B] 5A sample=238 model=facebook/wav2vec2-base-960h WER=0.0714 CER=0.0694
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=517: 0.024s
+[GROUP B] 5A sample=517 model=facebook/wav2vec2-base-960h WER=0.0769 CER=0.0141
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=616: 0.019s
+[GROUP B] 5A sample=616 model=facebook/wav2vec2-base-960h WER=0.1818 CER=0.1379
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=27: 0.025s
+[GROUP B] 5A sample=27 model=facebook/wav2vec2-base-960h WER=0.5 CER=0.2885
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=574: 0.038s
+[GROUP B] 5A sample=574 model=facebook/wav2vec2-base-960h WER=0.6364 CER=0.4071
+[VRAM] Unloaded: ASR facebook/wav2vec2-base-960h
+[CHECKPOINT] Saved: Group B 5a_facebook_wav2vec2_base_960h
+[GROUP B] Exp 5A: Multi-model comparison with openai/whisper-tiny
+[GROUP B] Loaded ASR pipeline: openai/whisper-tiny on device 0
+[TIMER] GA19B model=openai/whisper-tiny sample=114: 0.065s
+[VRAM] Unloaded: ASR openai/whisper-tiny
+
+============================================================
+[SESSION END] 2026-04-01T22:29:41.136769
+============================================================
+
+============================================================
+[SESSION START] 2026-04-01T22:30:24.272746
+============================================================
+[NOTEBOOK] Starting Group B full run
+
+============================================================
+[GROUP B] Starting full ASR workflow
+[GROUP B] Output root: /content/drive/MyDrive/kamp_hw13/hw13_experiments
+[CHECKPOINT] Loaded: last completed = Group B 5a_facebook_wav2vec2_base_960h
+[GROUP B] Resuming from checkpoint. Completed labels: ['5a_facebook_wav2vec2_base_960h', 'exp1_ga19a', 'exp1_ga19b']
+[GROUP B] Skipping Exp 1 GA19A dataset inspection (already completed)
+[GROUP B] Skipping Exp 1 GA19B baseline (already completed)
+[GROUP B] Skipping Exp 5A for facebook/wav2vec2-base-960h (already completed)
+[GROUP B] Exp 5A: Multi-model comparison with openai/whisper-tiny
+[GROUP B] Loaded ASR pipeline: openai/whisper-tiny on device 0
+[TIMER] GA19B model=openai/whisper-tiny sample=114: 0.010s
+[VRAM] Unloaded: ASR openai/whisper-tiny
+
+============================================================
+[SESSION END] 2026-04-01T22:30:29.783889
+============================================================
+
+============================================================
+[SESSION START] 2026-04-01T22:34:54.526986
+============================================================
+[NOTEBOOK] Starting Group B full run
+
+============================================================
+[GROUP B] Starting full ASR workflow
+[GROUP B] Output root: /content/drive/MyDrive/kamp_hw13/hw13_experiments
+[CHECKPOINT] Loaded: last completed = Group B 5a_facebook_wav2vec2_base_960h
+[GROUP B] Resuming from checkpoint. Completed labels: ['5a_facebook_wav2vec2_base_960h', 'exp1_ga19a', 'exp1_ga19b']
+[GROUP B] Skipping Exp 1 GA19A dataset inspection (already completed)
+[GROUP B] Skipping Exp 1 GA19B baseline (already completed)
+[GROUP B] Skipping Exp 5A for facebook/wav2vec2-base-960h (already completed)
+[GROUP B] Exp 5A: Multi-model comparison with openai/whisper-tiny
+[GROUP B] Loaded ASR pipeline: openai/whisper-tiny on device 0
+[TIMER] GA19B model=openai/whisper-tiny sample=114: 0.516s
+[GROUP B] 5A sample=114 model=openai/whisper-tiny WER=0.1803 CER=0.0959
+[TIMER] GA19B model=openai/whisper-tiny sample=25: 0.117s
+[GROUP B] 5A sample=25 model=openai/whisper-tiny WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-tiny sample=281: 0.078s
+[GROUP B] 5A sample=281 model=openai/whisper-tiny WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-tiny sample=250: 0.184s
+[GROUP B] 5A sample=250 model=openai/whisper-tiny WER=0.375 CER=0.1948
+[TIMER] GA19B model=openai/whisper-tiny sample=228: 0.073s
+[GROUP B] 5A sample=228 model=openai/whisper-tiny WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-tiny sample=142: 0.200s
+[GROUP B] 5A sample=142 model=openai/whisper-tiny WER=0.2857 CER=0.1818
+[TIMER] GA19B model=openai/whisper-tiny sample=104: 0.064s
+[GROUP B] 5A sample=104 model=openai/whisper-tiny WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-tiny sample=558: 0.332s
+[GROUP B] 5A sample=558 model=openai/whisper-tiny WER=0.25 CER=0.1814
+[TIMER] GA19B model=openai/whisper-tiny sample=89: 0.218s
+[GROUP B] 5A sample=89 model=openai/whisper-tiny WER=0.3846 CER=0.1597
+[TIMER] GA19B model=openai/whisper-tiny sample=604: 0.265s
+[GROUP B] 5A sample=604 model=openai/whisper-tiny WER=0.2759 CER=0.1438
+[TIMER] GA19B model=openai/whisper-tiny sample=432: 0.193s
+[GROUP B] 5A sample=432 model=openai/whisper-tiny WER=0.35 CER=0.219
+[TIMER] GA19B model=openai/whisper-tiny sample=32: 0.104s
+[GROUP B] 5A sample=32 model=openai/whisper-tiny WER=0.4444 CER=0.186
+[TIMER] GA19B model=openai/whisper-tiny sample=30: 0.051s
+[GROUP B] 5A sample=30 model=openai/whisper-tiny WER=1.0 CER=0.5
+[TIMER] GA19B model=openai/whisper-tiny sample=95: 0.292s
+[GROUP B] 5A sample=95 model=openai/whisper-tiny WER=0.2286 CER=0.1272
+[TIMER] GA19B model=openai/whisper-tiny sample=223: 0.117s
+[GROUP B] 5A sample=223 model=openai/whisper-tiny WER=0.6 CER=0.3636
+[TIMER] GA19B model=openai/whisper-tiny sample=238: 0.137s
+[GROUP B] 5A sample=238 model=openai/whisper-tiny WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-tiny sample=517: 0.122s
+[GROUP B] 5A sample=517 model=openai/whisper-tiny WER=0.0769 CER=0.0141
+[TIMER] GA19B model=openai/whisper-tiny sample=616: 0.112s
+[GROUP B] 5A sample=616 model=openai/whisper-tiny WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-tiny sample=27: 0.113s
+[GROUP B] 5A sample=27 model=openai/whisper-tiny WER=0.0833 CER=0.0769
+[TIMER] GA19B model=openai/whisper-tiny sample=574: 0.287s
+[GROUP B] 5A sample=574 model=openai/whisper-tiny WER=0.6364 CER=0.4513
+[VRAM] Unloaded: ASR openai/whisper-tiny
+[CHECKPOINT] Saved: Group B 5a_openai_whisper_tiny
+[GROUP B] Exp 5A: Multi-model comparison with openai/whisper-small
+[GROUP B] Loaded ASR pipeline: openai/whisper-small on device 0
+[TIMER] GA19B model=openai/whisper-small sample=114: 1.247s
+[GROUP B] 5A sample=114 model=openai/whisper-small WER=0.0984 CER=0.0342
+[TIMER] GA19B model=openai/whisper-small sample=25: 0.258s
+[GROUP B] 5A sample=25 model=openai/whisper-small WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=281: 0.167s
+[GROUP B] 5A sample=281 model=openai/whisper-small WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=250: 0.330s
+[GROUP B] 5A sample=250 model=openai/whisper-small WER=0.1875 CER=0.0779
+[TIMER] GA19B model=openai/whisper-small sample=228: 0.167s
+[GROUP B] 5A sample=228 model=openai/whisper-small WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=142: 0.479s
+[GROUP B] 5A sample=142 model=openai/whisper-small WER=0.1429 CER=0.0909
+[TIMER] GA19B model=openai/whisper-small sample=104: 0.143s
+[GROUP B] 5A sample=104 model=openai/whisper-small WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=558: 0.887s
+[GROUP B] 5A sample=558 model=openai/whisper-small WER=0.2045 CER=0.1422
+[TIMER] GA19B model=openai/whisper-small sample=89: 0.625s
+[GROUP B] 5A sample=89 model=openai/whisper-small WER=0.2692 CER=0.1176
+[TIMER] GA19B model=openai/whisper-small sample=604: 0.638s
+[GROUP B] 5A sample=604 model=openai/whisper-small WER=0.4138 CER=0.1895
+[TIMER] GA19B model=openai/whisper-small sample=432: 0.411s
+[GROUP B] 5A sample=432 model=openai/whisper-small WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=32: 0.225s
+[GROUP B] 5A sample=32 model=openai/whisper-small WER=0.1111 CER=0.0698
+[TIMER] GA19B model=openai/whisper-small sample=30: 0.089s
+[GROUP B] 5A sample=30 model=openai/whisper-small WER=0.5 CER=0.25
+[TIMER] GA19B model=openai/whisper-small sample=95: 0.635s
+[GROUP B] 5A sample=95 model=openai/whisper-small WER=0.1714 CER=0.0983
+[TIMER] GA19B model=openai/whisper-small sample=223: 0.256s
+[GROUP B] 5A sample=223 model=openai/whisper-small WER=0.6 CER=0.4091
+[TIMER] GA19B model=openai/whisper-small sample=238: 0.301s
+[GROUP B] 5A sample=238 model=openai/whisper-small WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=517: 0.278s
+[GROUP B] 5A sample=517 model=openai/whisper-small WER=0.0769 CER=0.0141
+[TIMER] GA19B model=openai/whisper-small sample=616: 0.253s
+[GROUP B] 5A sample=616 model=openai/whisper-small WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=27: 0.278s
+[GROUP B] 5A sample=27 model=openai/whisper-small WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=574: 0.664s
+[GROUP B] 5A sample=574 model=openai/whisper-small WER=0.8182 CER=0.5575
+[VRAM] Unloaded: ASR openai/whisper-small
+[CHECKPOINT] Saved: Group B 5a_openai_whisper_small
+[GROUP B] Exp 5A: Multi-model comparison with openai/whisper-medium
+[GROUP B] Loaded ASR pipeline: openai/whisper-medium on device 0
+[TIMER] GA19B model=openai/whisper-medium sample=114: 2.165s
+[GROUP B] 5A sample=114 model=openai/whisper-medium WER=0.0984 CER=0.0342
+[TIMER] GA19B model=openai/whisper-medium sample=25: 0.459s
+[GROUP B] 5A sample=25 model=openai/whisper-medium WER=0.0909 CER=0.0227
+[TIMER] GA19B model=openai/whisper-medium sample=281: 0.301s
+[GROUP B] 5A sample=281 model=openai/whisper-medium WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-medium sample=250: 0.606s
+[GROUP B] 5A sample=250 model=openai/whisper-medium WER=0.1875 CER=0.0779
+[TIMER] GA19B model=openai/whisper-medium sample=228: 0.271s
+[GROUP B] 5A sample=228 model=openai/whisper-medium WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-medium sample=142: 0.812s
+[GROUP B] 5A sample=142 model=openai/whisper-medium WER=0.0952 CER=0.0727
+[TIMER] GA19B model=openai/whisper-medium sample=104: 0.240s
+[GROUP B] 5A sample=104 model=openai/whisper-medium WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-medium sample=558: 1.534s
+[GROUP B] 5A sample=558 model=openai/whisper-medium WER=0.2045 CER=0.1422
+[TIMER] GA19B model=openai/whisper-medium sample=89: 1.075s
+[GROUP B] 5A sample=89 model=openai/whisper-medium WER=0.2692 CER=0.1513
+[TIMER] GA19B model=openai/whisper-medium sample=604: 1.150s
+[GROUP B] 5A sample=604 model=openai/whisper-medium WER=0.2069 CER=0.0915
+[TIMER] GA19B model=openai/whisper-medium sample=432: 0.758s
+[GROUP B] 5A sample=432 model=openai/whisper-medium WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-medium sample=32: 0.414s
+[GROUP B] 5A sample=32 model=openai/whisper-medium WER=0.1111 CER=0.0698
+[TIMER] GA19B model=openai/whisper-medium sample=30: 0.157s
+[GROUP B] 5A sample=30 model=openai/whisper-medium WER=0.5 CER=0.25
+[TIMER] GA19B model=openai/whisper-medium sample=95: 1.214s
+[GROUP B] 5A sample=95 model=openai/whisper-medium WER=0.1714 CER=0.0983
+[TIMER] GA19B model=openai/whisper-medium sample=223: 0.470s
+[GROUP B] 5A sample=223 model=openai/whisper-medium WER=0.6 CER=0.4091
+[TIMER] GA19B model=openai/whisper-medium sample=238: 0.559s
+[GROUP B] 5A sample=238 model=openai/whisper-medium WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-medium sample=517: 0.501s
+[GROUP B] 5A sample=517 model=openai/whisper-medium WER=0.0769 CER=0.0141
+[TIMER] GA19B model=openai/whisper-medium sample=616: 0.443s
+[GROUP B] 5A sample=616 model=openai/whisper-medium WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-medium sample=27: 0.499s
+[GROUP B] 5A sample=27 model=openai/whisper-medium WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-medium sample=574: 1.187s
+[GROUP B] 5A sample=574 model=openai/whisper-medium WER=0.8182 CER=0.5664
+[VRAM] Unloaded: ASR openai/whisper-medium
+[CHECKPOINT] Saved: Group B 5a_openai_whisper_medium
+[GROUP B] Loaded Exp 5B ASR pipeline: facebook/wav2vec2-base-960h on device 0
+[GROUP B] Exp 5B: Sampling-rate condition 8000 Hz with facebook/wav2vec2-base-960h
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=114: 0.023s
+[GROUP B] 5B sample=114 model=facebook/wav2vec2-base-960h rate=8000Hz WER=1.0 CER=0.726
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=25: 0.020s
+[GROUP B] 5B sample=25 model=facebook/wav2vec2-base-960h rate=8000Hz WER=1.0 CER=0.8182
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=281: 0.048s
+[GROUP B] 5B sample=281 model=facebook/wav2vec2-base-960h rate=8000Hz WER=1.0 CER=0.7333
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=250: 0.026s
+[GROUP B] 5B sample=250 model=facebook/wav2vec2-base-960h rate=8000Hz WER=1.0 CER=0.7143
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=228: 0.020s
+[GROUP B] 5B sample=228 model=facebook/wav2vec2-base-960h rate=8000Hz WER=1.0 CER=0.8519
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=142: 0.022s
+[GROUP B] 5B sample=142 model=facebook/wav2vec2-base-960h rate=8000Hz WER=0.9524 CER=0.7091
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=104: 0.020s
+[GROUP B] 5B sample=104 model=facebook/wav2vec2-base-960h rate=8000Hz WER=1.0 CER=0.8
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=558: 0.020s
+[GROUP B] 5B sample=558 model=facebook/wav2vec2-base-960h rate=8000Hz WER=0.9545 CER=0.7108
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=89: 0.022s
+[GROUP B] 5B sample=89 model=facebook/wav2vec2-base-960h rate=8000Hz WER=0.9231 CER=0.7143
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=604: 0.022s
+[GROUP B] 5B sample=604 model=facebook/wav2vec2-base-960h rate=8000Hz WER=1.0 CER=0.732
+[CHECKPOINT] Saved: Group B 5b_default_pipeline_8000
+[GROUP B] Exp 5B: Sampling-rate condition 16000 Hz with facebook/wav2vec2-base-960h
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=114: 0.030s
+[GROUP B] 5B sample=114 model=facebook/wav2vec2-base-960h rate=16000Hz WER=0.459 CER=0.2123
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=25: 0.014s
+[GROUP B] 5B sample=25 model=facebook/wav2vec2-base-960h rate=16000Hz WER=0.1818 CER=0.1136
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=281: 0.012s
+[GROUP B] 5B sample=281 model=facebook/wav2vec2-base-960h rate=16000Hz WER=0.0 CER=0.0
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=250: 0.016s
+[GROUP B] 5B sample=250 model=facebook/wav2vec2-base-960h rate=16000Hz WER=0.6875 CER=0.3896
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=228: 0.014s
+[GROUP B] 5B sample=228 model=facebook/wav2vec2-base-960h rate=16000Hz WER=0.0 CER=0.0
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=142: 0.022s
+[GROUP B] 5B sample=142 model=facebook/wav2vec2-base-960h rate=16000Hz WER=0.381 CER=0.2182
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=104: 0.013s
+[GROUP B] 5B sample=104 model=facebook/wav2vec2-base-960h rate=16000Hz WER=0.25 CER=0.05
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=558: 0.023s
+[GROUP B] 5B sample=558 model=facebook/wav2vec2-base-960h rate=16000Hz WER=0.3636 CER=0.1912
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=89: 0.021s
+[GROUP B] 5B sample=89 model=facebook/wav2vec2-base-960h rate=16000Hz WER=0.6154 CER=0.2857
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=604: 0.022s
+[GROUP B] 5B sample=604 model=facebook/wav2vec2-base-960h rate=16000Hz WER=0.5862 CER=0.2745
+[CHECKPOINT] Saved: Group B 5b_default_pipeline_16000
+[GROUP B] Exp 5B: Sampling-rate condition 22050 Hz with facebook/wav2vec2-base-960h
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=114: 0.045s
+[GROUP B] 5B sample=114 model=facebook/wav2vec2-base-960h rate=22050Hz WER=0.5246 CER=0.3048
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=25: 0.026s
+[GROUP B] 5B sample=25 model=facebook/wav2vec2-base-960h rate=22050Hz WER=0.4545 CER=0.25
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=281: 0.025s
+[GROUP B] 5B sample=281 model=facebook/wav2vec2-base-960h rate=22050Hz WER=0.5714 CER=0.2667
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=250: 0.029s
+[GROUP B] 5B sample=250 model=facebook/wav2vec2-base-960h rate=22050Hz WER=1.0 CER=0.7662
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=228: 0.025s
+[GROUP B] 5B sample=228 model=facebook/wav2vec2-base-960h rate=22050Hz WER=0.3333 CER=0.3333
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=142: 0.033s
+[GROUP B] 5B sample=142 model=facebook/wav2vec2-base-960h rate=22050Hz WER=0.8095 CER=0.5636
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=104: 0.024s
+[GROUP B] 5B sample=104 model=facebook/wav2vec2-base-960h rate=22050Hz WER=0.75 CER=0.25
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=558: 0.034s
+[GROUP B] 5B sample=558 model=facebook/wav2vec2-base-960h rate=22050Hz WER=0.5455 CER=0.299
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=89: 0.033s
+[GROUP B] 5B sample=89 model=facebook/wav2vec2-base-960h rate=22050Hz WER=0.8462 CER=0.4874
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=604: 0.038s
+[GROUP B] 5B sample=604 model=facebook/wav2vec2-base-960h rate=22050Hz WER=0.8621 CER=0.4837
+[CHECKPOINT] Saved: Group B 5b_default_pipeline_22050
+[GROUP B] Exp 5B: Sampling-rate condition 48000 Hz with facebook/wav2vec2-base-960h
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=114: 0.084s
+[GROUP B] 5B sample=114 model=facebook/wav2vec2-base-960h rate=48000Hz WER=1.0 CER=0.9212
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=25: 0.033s
+[GROUP B] 5B sample=25 model=facebook/wav2vec2-base-960h rate=48000Hz WER=0.9091 CER=0.7273
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=281: 0.016s
+[GROUP B] 5B sample=281 model=facebook/wav2vec2-base-960h rate=48000Hz WER=1.0 CER=0.7333
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=250: 0.039s
+[GROUP B] 5B sample=250 model=facebook/wav2vec2-base-960h rate=48000Hz WER=1.0 CER=0.8182
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=228: 0.033s
+[GROUP B] 5B sample=228 model=facebook/wav2vec2-base-960h rate=48000Hz WER=1.0 CER=0.7407
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=142: 0.053s
+[GROUP B] 5B sample=142 model=facebook/wav2vec2-base-960h rate=48000Hz WER=0.9524 CER=0.8182
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=104: 0.025s
+[GROUP B] 5B sample=104 model=facebook/wav2vec2-base-960h rate=48000Hz WER=1.0 CER=0.8
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=558: 0.055s
+[GROUP B] 5B sample=558 model=facebook/wav2vec2-base-960h rate=48000Hz WER=1.0 CER=0.9461
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=89: 0.051s
+[GROUP B] 5B sample=89 model=facebook/wav2vec2-base-960h rate=48000Hz WER=1.0 CER=0.8067
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=604: 0.064s
+[GROUP B] 5B sample=604 model=facebook/wav2vec2-base-960h rate=48000Hz WER=0.9655 CER=0.7647
+[CHECKPOINT] Saved: Group B 5b_default_pipeline_48000
+[VRAM] Unloaded: ASR facebook/wav2vec2-base-960h
+[GROUP B] Loaded Exp 5B ASR pipeline: openai/whisper-small on device 0
+[GROUP B] Exp 5B: Sampling-rate condition 8000 Hz with openai/whisper-small
+[TIMER] GA19B model=openai/whisper-small sample=114: 1.225s
+[GROUP B] 5B sample=114 model=openai/whisper-small rate=8000Hz WER=0.5902 CER=0.3973
+[TIMER] GA19B model=openai/whisper-small sample=25: 0.265s
+[GROUP B] 5B sample=25 model=openai/whisper-small rate=8000Hz WER=0.7273 CER=0.5
+[TIMER] GA19B model=openai/whisper-small sample=281: 0.170s
+[GROUP B] 5B sample=281 model=openai/whisper-small rate=8000Hz WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=250: 0.403s
+[GROUP B] 5B sample=250 model=openai/whisper-small rate=8000Hz WER=0.75 CER=0.4416
+[TIMER] GA19B model=openai/whisper-small sample=228: 0.153s
+[GROUP B] 5B sample=228 model=openai/whisper-small rate=8000Hz WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=142: 0.536s
+[GROUP B] 5B sample=142 model=openai/whisper-small rate=8000Hz WER=0.5714 CER=0.3636
+[TIMER] GA19B model=openai/whisper-small sample=104: 0.140s
+[GROUP B] 5B sample=104 model=openai/whisper-small rate=8000Hz WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=558: 0.791s
+[GROUP B] 5B sample=558 model=openai/whisper-small rate=8000Hz WER=0.25 CER=0.201
+[TIMER] GA19B model=openai/whisper-small sample=89: 0.419s
+[GROUP B] 5B sample=89 model=openai/whisper-small rate=8000Hz WER=0.3846 CER=0.2521
+[TIMER] GA19B model=openai/whisper-small sample=604: 0.605s
+[GROUP B] 5B sample=604 model=openai/whisper-small rate=8000Hz WER=0.4138 CER=0.2353
+[CHECKPOINT] Saved: Group B 5b_whisper_small_8000
+[GROUP B] Exp 5B: Sampling-rate condition 16000 Hz with openai/whisper-small
+[TIMER] GA19B model=openai/whisper-small sample=114: 1.231s
+[GROUP B] 5B sample=114 model=openai/whisper-small rate=16000Hz WER=0.0984 CER=0.0342
+[TIMER] GA19B model=openai/whisper-small sample=25: 0.261s
+[GROUP B] 5B sample=25 model=openai/whisper-small rate=16000Hz WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=281: 0.167s
+[GROUP B] 5B sample=281 model=openai/whisper-small rate=16000Hz WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=250: 0.325s
+[GROUP B] 5B sample=250 model=openai/whisper-small rate=16000Hz WER=0.1875 CER=0.0779
+[TIMER] GA19B model=openai/whisper-small sample=228: 0.151s
+[GROUP B] 5B sample=228 model=openai/whisper-small rate=16000Hz WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=142: 0.443s
+[GROUP B] 5B sample=142 model=openai/whisper-small rate=16000Hz WER=0.1429 CER=0.0909
+[TIMER] GA19B model=openai/whisper-small sample=104: 0.138s
+[GROUP B] 5B sample=104 model=openai/whisper-small rate=16000Hz WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=558: 0.831s
+[GROUP B] 5B sample=558 model=openai/whisper-small rate=16000Hz WER=0.2045 CER=0.1422
+[TIMER] GA19B model=openai/whisper-small sample=89: 0.588s
+[GROUP B] 5B sample=89 model=openai/whisper-small rate=16000Hz WER=0.2692 CER=0.1176
+[TIMER] GA19B model=openai/whisper-small sample=604: 0.647s
+[GROUP B] 5B sample=604 model=openai/whisper-small rate=16000Hz WER=0.4138 CER=0.1895
+[CHECKPOINT] Saved: Group B 5b_whisper_small_16000
+[GROUP B] Exp 5B: Sampling-rate condition 22050 Hz with openai/whisper-small
+[TIMER] GA19B model=openai/whisper-small sample=114: 1.204s
+[GROUP B] 5B sample=114 model=openai/whisper-small rate=22050Hz WER=0.0984 CER=0.0342
+[TIMER] GA19B model=openai/whisper-small sample=25: 0.261s
+[GROUP B] 5B sample=25 model=openai/whisper-small rate=22050Hz WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=281: 0.167s
+[GROUP B] 5B sample=281 model=openai/whisper-small rate=22050Hz WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=250: 0.311s
+[GROUP B] 5B sample=250 model=openai/whisper-small rate=22050Hz WER=0.3125 CER=0.2078
+[TIMER] GA19B model=openai/whisper-small sample=228: 0.152s
+[GROUP B] 5B sample=228 model=openai/whisper-small rate=22050Hz WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=142: 0.440s
+[GROUP B] 5B sample=142 model=openai/whisper-small rate=22050Hz WER=0.2381 CER=0.1727
+[TIMER] GA19B model=openai/whisper-small sample=104: 0.135s
+[GROUP B] 5B sample=104 model=openai/whisper-small rate=22050Hz WER=0.0 CER=0.0
+[TIMER] GA19B model=openai/whisper-small sample=558: 0.843s
+[GROUP B] 5B sample=558 model=openai/whisper-small rate=22050Hz WER=0.2273 CER=0.1618
+[TIMER] GA19B model=openai/whisper-small sample=89: 0.417s
+[GROUP B] 5B sample=89 model=openai/whisper-small rate=22050Hz WER=0.3462 CER=0.2605
+[TIMER] GA19B model=openai/whisper-small sample=604: 0.663s
+[GROUP B] 5B sample=604 model=openai/whisper-small rate=22050Hz WER=0.4828 CER=0.2549
+[CHECKPOINT] Saved: Group B 5b_whisper_small_22050
+[GROUP B] Exp 5B: Sampling-rate condition 48000 Hz with openai/whisper-small
+[TIMER] GA19B model=openai/whisper-small sample=114: 0.059s
+[GROUP B] 5B sample=114 model=openai/whisper-small rate=48000Hz WER=0.9836 CER=0.9966
+[TIMER] GA19B model=openai/whisper-small sample=25: 0.090s
+[GROUP B] 5B sample=25 model=openai/whisper-small rate=48000Hz WER=1.0 CER=0.8864
+[TIMER] GA19B model=openai/whisper-small sample=281: 0.059s
+[GROUP B] 5B sample=281 model=openai/whisper-small rate=48000Hz WER=0.8571 CER=0.9667
+[TIMER] GA19B model=openai/whisper-small sample=250: 0.090s
+[GROUP B] 5B sample=250 model=openai/whisper-small rate=48000Hz WER=1.0 CER=0.9091
+[TIMER] GA19B model=openai/whisper-small sample=228: 0.059s
+[GROUP B] 5B sample=228 model=openai/whisper-small rate=48000Hz WER=1.0 CER=1.0
+[TIMER] GA19B model=openai/whisper-small sample=142: 0.059s
+[GROUP B] 5B sample=142 model=openai/whisper-small rate=48000Hz WER=1.0 CER=0.9727
+[TIMER] GA19B model=openai/whisper-small sample=104: 0.058s
+[GROUP B] 5B sample=104 model=openai/whisper-small rate=48000Hz WER=1.0 CER=0.95
+[TIMER] GA19B model=openai/whisper-small sample=558: 0.057s
+[GROUP B] 5B sample=558 model=openai/whisper-small rate=48000Hz WER=1.0 CER=0.9902
+[TIMER] GA19B model=openai/whisper-small sample=89: 0.058s
+[GROUP B] 5B sample=89 model=openai/whisper-small rate=48000Hz WER=0.9615 CER=0.9748
+[TIMER] GA19B model=openai/whisper-small sample=604: 0.060s
+[GROUP B] 5B sample=604 model=openai/whisper-small rate=48000Hz WER=0.9655 CER=0.9804
+[CHECKPOINT] Saved: Group B 5b_whisper_small_48000
+[VRAM] Unloaded: ASR openai/whisper-small
+[CHECKPOINT] Saved: Group B complete
+[GROUP B] Complete. Dataset inspections=0, transcriptions=140 ({'exp1': 0, 'exp5': 140}).
+{'mode': 'full', 'output_root': '/content/drive/MyDrive/kamp_hw13/hw13_experiments', 'dataset_inspections': 0, 'total_transcriptions': 140, 'per_experiment': {'exp1': 0, 'exp5': 140}, 'models_used': ['facebook/wav2vec2-base-960h', 'openai/whisper-medium', 'openai/whisper-small', 'openai/whisper-tiny']}
+
+============================================================
+[SESSION END] 2026-04-01T22:36:27.840141
+============================================================

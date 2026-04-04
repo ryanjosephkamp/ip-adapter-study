@@ -1,0 +1,47 @@
+experiment,sub_experiment,script,seed,prompt,reference_image,ip_adapter_scale,block_level_scale_config,ip_adapter_scale_active_value,target_block,target_layers,num_inference_steps,image_path,generation_time_sec,timestamp
+exp3,3a,GA18C,42,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [1.0, 0.0, 0.0]}}",1.0,block_0,100,25,exp3_ga18c_blocks/ga18c_3a_layer_100_seed42.png,1.429,2026-04-01 21:14:53
+exp3,3a,GA18C,123,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [1.0, 0.0, 0.0]}}",1.0,block_0,100,25,exp3_ga18c_blocks/ga18c_3a_layer_100_seed123.png,1.441,2026-04-01 21:14:55
+exp3,3a,GA18C,456,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [1.0, 0.0, 0.0]}}",1.0,block_0,100,25,exp3_ga18c_blocks/ga18c_3a_layer_100_seed456.png,1.425,2026-04-01 21:14:57
+exp3,3a,GA18C,42,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3a_layer_010_seed42.png,1.423,2026-04-01 21:14:59
+exp3,3a,GA18C,123,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3a_layer_010_seed123.png,1.423,2026-04-01 21:15:01
+exp3,3a,GA18C,456,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3a_layer_010_seed456.png,1.467,2026-04-01 21:15:03
+exp3,3a,GA18C,42,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 0.0, 1.0]}}",1.0,block_0,001,25,exp3_ga18c_blocks/ga18c_3a_layer_001_seed42.png,1.431,2026-04-01 21:15:05
+exp3,3a,GA18C,123,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 0.0, 1.0]}}",1.0,block_0,001,25,exp3_ga18c_blocks/ga18c_3a_layer_001_seed123.png,1.463,2026-04-01 21:15:07
+exp3,3a,GA18C,456,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 0.0, 1.0]}}",1.0,block_0,001,25,exp3_ga18c_blocks/ga18c_3a_layer_001_seed456.png,1.449,2026-04-01 21:15:08
+exp3,3a,GA18C,42,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [1.0, 1.0, 0.0]}}",1.0,block_0,110,25,exp3_ga18c_blocks/ga18c_3a_layer_110_seed42.png,1.435,2026-04-01 21:15:10
+exp3,3a,GA18C,123,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [1.0, 1.0, 0.0]}}",1.0,block_0,110,25,exp3_ga18c_blocks/ga18c_3a_layer_110_seed123.png,1.434,2026-04-01 21:15:12
+exp3,3a,GA18C,456,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [1.0, 1.0, 0.0]}}",1.0,block_0,110,25,exp3_ga18c_blocks/ga18c_3a_layer_110_seed456.png,1.46,2026-04-01 21:15:14
+exp3,3a,GA18C,42,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 1.0]}}",1.0,block_0,011,25,exp3_ga18c_blocks/ga18c_3a_layer_011_seed42.png,1.44,2026-04-01 21:15:16
+exp3,3a,GA18C,123,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 1.0]}}",1.0,block_0,011,25,exp3_ga18c_blocks/ga18c_3a_layer_011_seed123.png,1.437,2026-04-01 21:15:18
+exp3,3a,GA18C,456,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 1.0]}}",1.0,block_0,011,25,exp3_ga18c_blocks/ga18c_3a_layer_011_seed456.png,1.509,2026-04-01 21:15:20
+exp3,3a,GA18C,42,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [1.0, 1.0, 1.0]}}",1.0,block_0,111,25,exp3_ga18c_blocks/ga18c_3a_layer_111_seed42.png,1.465,2026-04-01 21:15:22
+exp3,3a,GA18C,123,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [1.0, 1.0, 1.0]}}",1.0,block_0,111,25,exp3_ga18c_blocks/ga18c_3a_layer_111_seed123.png,1.453,2026-04-01 21:15:24
+exp3,3a,GA18C,456,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [1.0, 1.0, 1.0]}}",1.0,block_0,111,25,exp3_ga18c_blocks/ga18c_3a_layer_111_seed456.png,1.475,2026-04-01 21:15:26
+exp3,3b,GA18C,42,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3b_block0_seed42.png,1.426,2026-04-01 21:15:28
+exp3,3b,GA18C,123,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3b_block0_seed123.png,1.427,2026-04-01 21:15:29
+exp3,3b,GA18C,42,a cat inside of a box,mamoeiro,,"{""up"": {""block_1"": [0.0, 1.0, 0.0]}}",1.0,block_1,010,25,exp3_ga18c_blocks/ga18c_3b_block1_seed42.png,1.464,2026-04-01 21:15:31
+exp3,3b,GA18C,123,a cat inside of a box,mamoeiro,,"{""up"": {""block_1"": [0.0, 1.0, 0.0]}}",1.0,block_1,010,25,exp3_ga18c_blocks/ga18c_3b_block1_seed123.png,1.419,2026-04-01 21:15:33
+exp3,3b,GA18C,42,a cat inside of a box,mamoeiro,,"{""up"": {""block_2"": [0.0, 1.0, 0.0]}}",1.0,block_2,010,25,exp3_ga18c_blocks/ga18c_3b_block2_seed42.png,1.421,2026-04-01 21:15:35
+exp3,3b,GA18C,123,a cat inside of a box,mamoeiro,,"{""up"": {""block_2"": [0.0, 1.0, 0.0]}}",1.0,block_2,010,25,exp3_ga18c_blocks/ga18c_3b_block2_seed123.png,1.444,2026-04-01 21:15:37
+exp3,3c,GA18C,42,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 0.25, 0.0]}}",0.25,block_0,010,25,exp3_ga18c_blocks/ga18c_3c_scale_0.25_seed42.png,1.428,2026-04-01 21:15:39
+exp3,3c,GA18C,123,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 0.25, 0.0]}}",0.25,block_0,010,25,exp3_ga18c_blocks/ga18c_3c_scale_0.25_seed123.png,1.422,2026-04-01 21:15:41
+exp3,3c,GA18C,42,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 0.5, 0.0]}}",0.5,block_0,010,25,exp3_ga18c_blocks/ga18c_3c_scale_0.50_seed42.png,1.448,2026-04-01 21:15:43
+exp3,3c,GA18C,123,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 0.5, 0.0]}}",0.5,block_0,010,25,exp3_ga18c_blocks/ga18c_3c_scale_0.50_seed123.png,1.439,2026-04-01 21:15:44
+exp3,3c,GA18C,42,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 0.75, 0.0]}}",0.75,block_0,010,25,exp3_ga18c_blocks/ga18c_3c_scale_0.75_seed42.png,1.429,2026-04-01 21:15:46
+exp3,3c,GA18C,123,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 0.75, 0.0]}}",0.75,block_0,010,25,exp3_ga18c_blocks/ga18c_3c_scale_0.75_seed123.png,1.457,2026-04-01 21:15:48
+exp3,3c,GA18C,42,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3c_scale_1.00_seed42.png,1.42,2026-04-01 21:15:50
+exp3,3c,GA18C,123,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3c_scale_1.00_seed123.png,1.425,2026-04-01 21:15:52
+exp3,3c,GA18C,42,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.5, 0.0]}}",1.5,block_0,010,25,exp3_ga18c_blocks/ga18c_3c_scale_1.50_seed42.png,1.442,2026-04-01 21:15:54
+exp3,3c,GA18C,123,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.5, 0.0]}}",1.5,block_0,010,25,exp3_ga18c_blocks/ga18c_3c_scale_1.50_seed123.png,1.426,2026-04-01 21:15:55
+exp3,3d,GA18C,42,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3d_prompt_cat_seed42.png,1.433,2026-04-01 21:15:57
+exp3,3d,GA18C,123,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3d_prompt_cat_seed123.png,1.456,2026-04-01 21:15:59
+exp3,3d,GA18C,42,a mountain landscape at sunset,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3d_prompt_mountain_seed42.png,1.421,2026-04-01 21:16:01
+exp3,3d,GA18C,123,a mountain landscape at sunset,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3d_prompt_mountain_seed123.png,1.437,2026-04-01 21:16:03
+exp3,3d,GA18C,42,a portrait of an old man,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3d_prompt_portrait_seed42.png,1.505,2026-04-01 21:16:04
+exp3,3d,GA18C,123,a portrait of an old man,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3d_prompt_portrait_seed123.png,1.426,2026-04-01 21:16:06
+exp3,3d,GA18C,42,a futuristic cityscape,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3d_prompt_cityscape_seed42.png,1.448,2026-04-01 21:16:08
+exp3,3d,GA18C,123,a futuristic cityscape,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3d_prompt_cityscape_seed123.png,1.451,2026-04-01 21:16:10
+exp3,3e,GA18C,42,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3e_ref_mamoeiro_seed42.png,1.435,2026-04-01 21:16:12
+exp3,3e,GA18C,123,a cat inside of a box,mamoeiro,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3e_ref_mamoeiro_seed123.png,1.462,2026-04-01 21:16:14
+exp3,3e,GA18C,42,a cat inside of a box,items_variation,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3e_ref_items_variation_seed42.png,1.478,2026-04-01 21:16:16
+exp3,3e,GA18C,123,a cat inside of a box,items_variation,,"{""up"": {""block_0"": [0.0, 1.0, 0.0]}}",1.0,block_0,010,25,exp3_ga18c_blocks/ga18c_3e_ref_items_variation_seed123.png,1.442,2026-04-01 21:16:17

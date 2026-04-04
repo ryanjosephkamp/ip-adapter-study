@@ -1,0 +1,681 @@
+% IEEE Conference Paper — HW13: Multi-Modal Generative AI
+% CS6078 Generative AI — University of Cincinnati — Spring 2026
+
+\documentclass[conference]{IEEEtran}
+
+%=============================================================================
+% Packages
+%=============================================================================
+
+% Citations
+\usepackage{cite}
+
+% Math
+\usepackage{amsmath,amssymb,amsfonts}
+
+% Algorithms
+\usepackage{algorithmic}
+
+% Figures
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{placeins}
+
+% Tables
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+
+% Typography and formatting
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{bm}
+
+%=============================================================================
+% Custom commands
+%=============================================================================
+
+\newcommand{\ipadapter}{IP-Adapter}
+\newcommand{\sdxl}{SDXL}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+%=============================================================================
+\begin{document}
+%=============================================================================
+
+\title{Multi-Modal Generative AI with IP-Adapter and Neural Audio Models: A Systematic Experimental Study\\
+{\footnotesize A Comprehensive Experimental Study of Uniform and Block-Level Image Conditioning, Text--Image Interaction, Automatic Speech Recognition Robustness, and Bark Text-to-Speech Variation}
+}
+
+\author{\IEEEauthorblockN{Ryan Kamp}
+\IEEEauthorblockA{\textit{CS6078 Generative AI} \\
+\textit{University of Cincinnati}\\
+March 31, 2026}}
+
+\maketitle
+
+%=============================================================================
+\begin{abstract}
+This study presents a systematic experimental investigation of multi-modal generative AI spanning two domains: adapter-based image conditioning with latent diffusion models and neural audio generation and understanding. Using the IP-Adapter framework with Stable Diffusion XL (SDXL), we conducted seven experiments addressing seven research questions across 149 generated images, 29 audio files, and 164 ASR transcriptions totaling 828.2 seconds of GPU compute. In the vision domain, we characterized the nonlinear relationship between the uniform IP-Adapter scale \(\lambda\) and generated image fidelity, explored block-level scale configurations for content--style disentanglement, and quantified the interaction between text and image conditioning signals. In the audio domain, we evaluated four ASR models on conversational banking-domain speech, quantified the impact of sampling rate mismatch on transcription accuracy, and analyzed Bark text-to-speech consistency and variation across repeated generations and diverse text inputs. A cross-modal analysis compared the controllability, stochasticity, computational cost, and evaluation methodology across all paradigms. Results demonstrate that IP-Adapter image conditioning provides continuous, fine-grained control via the scale parameter with generation times of approximately 1.5 seconds per image, while Bark TTS output exhibits substantial stochastic variation across seeds with a mean generation time of 19.2 seconds. Among ASR models, Whisper-medium achieved the lowest mean WER (0.172) on correctly resampled audio, while sampling rate mismatch increased wav2vec~2.0's WER from 0.407 to 0.747. These findings contribute empirical characterizations of under-explored parameter spaces in modern multi-modal generative AI systems.
+\end{abstract}
+
+\begin{IEEEkeywords}
+IP-Adapter, Stable Diffusion XL, latent diffusion models, content--style disentanglement, automatic speech recognition, text-to-speech synthesis, Bark, wav2vec 2.0, Whisper, multi-modal generative AI
+\end{IEEEkeywords}
+
+%=============================================================================
+\section{Introduction}
+\label{sec:intro}
+%=============================================================================
+
+\subsection{Assignment Context and Project Scope}
+
+This study extends Homework~13 for CS6078 Generative AI (Spring 2026, University of Cincinnati), which is based on Chapters~8 and~9 of \textit{Hands-on Generative AI with Transformers and Diffusion Models} by Alammar and Grootendorst~\cite{alammar2024}. The base assignment requires running three scripts --- GA18B.py and GA18C.py for IP-Adapter image prompting and GA19B.py for automatic speech recognition --- and presenting the results. This project extends the assignment into a rigorous multi-modal research study by: (1)~running all five scripts (GA18B, GA18C, GA19A, GA19B, GA19C) with default parameters to establish baselines, (2)~systematically varying parameters across seven experiments to address seven research questions spanning vision and audio modalities, and (3)~producing publication-quality analysis with quantitative metrics, comparative grids, and cross-modal synthesis.
+
+The vision domain experiments use the \ipadapter{} framework~\cite{ye2023ipadapter} with Stable Diffusion XL (\sdxl{})~\cite{podell2023sdxl} to investigate uniform-scale image variation, block-level content--style disentanglement, and text--image conditioning interaction. The audio domain experiments evaluate multiple ASR models on the MINDS-14 banking-domain speech dataset~\cite{gerz2021minds14}, analyze Bark text-to-speech synthesis~\cite{bark2023} consistency and variation, and quantify the effects of preprocessing choices on model performance. A cross-modal analysis synthesizes findings across all paradigms.
+
+\subsection{Research Questions}
+
+This study addresses seven research questions:
+
+\begin{enumerate}
+    \item[\textbf{RQ1.}] How does the uniform \ipadapter{} scale \(\lambda\) govern the trade-off between reference image fidelity and output variation in image-prompted generation?
+    \item[\textbf{RQ2.}] How do different block-level \ipadapter{} scale configurations affect the type and degree of style transfer in content--style disentanglement?
+    \item[\textbf{RQ3.}] How do the \ipadapter{} image conditioning and text prompt conditioning interact when both are active simultaneously?
+    \item[\textbf{RQ4.}] How do different ASR models compare in transcription accuracy on conversational banking-domain speech, and how robust is ASR performance to sampling rate mismatch?
+    \item[\textbf{RQ5.}] How consistent is Bark's TTS output across repeated generations, and how do text input properties (length, complexity, domain) affect the quality and character of the synthesized speech?
+    \item[\textbf{RQ6.}] How sensitive are \ipadapter{} image variations and Bark TTS outputs to the random seed, and do some configurations exhibit more deterministic behavior than others?
+    \item[\textbf{RQ7.}] How do the generative control mechanisms differ between the vision domain (\ipadapter{} image conditioning via diffusion) and the audio domain (autoregressive token-based TTS, pipeline-based ASR), and what are their relative strengths and trade-offs?
+\end{enumerate}
+
+\subsection{Contributions}
+
+This study makes the following contributions:
+
+\begin{enumerate}
+    \item A systematic characterization of the \ipadapter{} uniform scale parameter across the full \([0.0, 1.0]\) range with three seeds per condition, generating 51 images that map the nonlinear fidelity--variation trade-off.
+    \item An exploration of 46 block-level \ipadapter{} configurations spanning layer selection, block selection, scale intensity, alternative prompts, and alternative reference images for content--style disentanglement.
+    \item A 34-image investigation of text--image conditioning interaction across five sub-experiments examining prompt specificity, semantic compatibility, and uniform versus block-level comparison.
+    \item A quantitative ASR evaluation comparing four models (wav2vec~2.0, Whisper-tiny, Whisper-small, Whisper-medium) on 20 MINDS-14 samples with WER/CER metrics, plus a 40-sample sampling-rate mismatch analysis.
+    \item A 20-file Bark TTS analysis across repeated generations, text length variation, domain complexity, and round-trip TTS-to-ASR evaluation.
+    \item A seed sensitivity analysis across 8 seeds for three generative paradigms (24 total outputs).
+    \item A cross-modal comparison framework relating vision and audio generative paradigms on controllability, stochasticity, computational cost, and evaluation methodology.
+\end{enumerate}
+
+\subsection{Report Organization}
+
+Section~\ref{sec:litreview} reviews the relevant literature. Section~\ref{sec:methodology} describes the experimental methodology. Sections~\ref{sec:exp1} through~\ref{sec:exp7} present results for each experiment. Section~\ref{sec:discussion} provides a cross-experiment discussion addressing all seven research questions. Section~\ref{sec:conclusions} concludes the study, and Section~\ref{sec:futurework} identifies future work directions.
+
+%=============================================================================
+\section{Literature Review}
+\label{sec:litreview}
+%=============================================================================
+
+\subsection{Latent Diffusion Models and SDXL Foundations}
+
+Denoising Diffusion Probabilistic Models (DDPMs), formalized by Ho et al.~\cite{ho2020ddpm}, learn to reverse a gradual noising process to generate data. The forward process adds Gaussian noise over \(T\) timesteps according to a variance schedule \(\beta_t\):
+\begin{equation}
+q(\mathbf{x}_t | \mathbf{x}_{t-1}) = \mathcal{N}\!\bigl(\mathbf{x}_t;\, \sqrt{1 - \beta_t}\, \mathbf{x}_{t-1},\, \beta_t \mathbf{I}\bigr)
+\label{eq:forward}
+\end{equation}
+The reverse process learns a noise-prediction network \(\boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t)\) trained with the simplified objective \(\mathcal{L} = \mathbb{E}[\|\boldsymbol{\epsilon} - \boldsymbol{\epsilon}_\theta(\mathbf{x}_t, t)\|^2]\)~\cite{ho2020ddpm}. Latent Diffusion Models (LDMs)~\cite{rombach2022ldm} improve computational efficiency by operating in a compressed latent space \(\mathbf{z} = \mathcal{E}(\mathbf{x})\) provided by a pretrained VAE, reducing spatial dimensions by a factor of~8 while preserving generation quality. Conditioning is introduced through cross-attention layers in the U-Net~\cite{ronneberger2015unet}, where latent features serve as queries and conditioning embeddings (e.g., CLIP text encodings~\cite{radford2021clip}) provide keys and values.
+
+Stable Diffusion XL (\sdxl{})~\cite{podell2023sdxl} advances this framework with a dual text encoder architecture (OpenAI CLIP ViT-L/14 and OpenCLIP ViT-bigG/14) producing a 2048-dimensional conditioning signal, a 2.6-billion-parameter U-Net, and micro-conditioning on image resolution metadata. Classifier-Free Guidance (CFG)~\cite{ho2022cfg} amplifies prompt adherence at inference time via the modified noise prediction:
+\begin{equation}
+\hat{\boldsymbol{\epsilon}}_\theta = \boldsymbol{\epsilon}_\theta(\mathbf{z}_t, t, \varnothing) + w \bigl[\boldsymbol{\epsilon}_\theta(\mathbf{z}_t, t, \mathbf{c}) - \boldsymbol{\epsilon}_\theta(\mathbf{z}_t, t, \varnothing)\bigr]
+\label{eq:cfg}
+\end{equation}
+where \(w\) is the guidance scale and \(\varnothing\) denotes the null conditioning embedding.
+
+\subsection{IP-Adapter Architecture and Decoupled Cross-Attention}
+
+\ipadapter{}~\cite{ye2023ipadapter} enables image-prompted generation by introducing a parallel cross-attention pathway for CLIP image embeddings alongside the existing text cross-attention. The combined output at each cross-attention layer is:
+\begin{equation}
+\mathbf{Z} = \mathrm{Attention}(\mathbf{Q}, \mathbf{K}_{\text{text}}, \mathbf{V}_{\text{text}}) + \lambda \cdot \mathrm{Attention}(\mathbf{Q}, \mathbf{K}_{\text{image}}, \mathbf{V}_{\text{image}})
+\label{eq:ipadapter}
+\end{equation}
+where \(\lambda\) is the \ipadapter{} scale controlling image conditioning strength. The image cross-attention layers have their own learned key/value projection matrices (\(\mathbf{W}_K^{\text{image}}, \mathbf{W}_V^{\text{image}}\)), trained while the base U-Net parameters remain frozen. A small image projection network maps the CLIP image embedding to the dimensionality expected by these projections: \(\mathbf{c}_{\text{image}} = \mathrm{Proj}(\mathrm{CLIP}_{\text{image}}(\mathbf{x}_{\text{ref}}))\). This decoupled design preserves the base model's text-conditioning capability while adding image conditioning as a parallel, independently scalable channel.
+
+\subsection{Hierarchical U-Net Features and Content--Style Disentanglement}
+
+The U-Net architecture processes features at multiple spatial scales, with a well-established property that different layers encode different levels of abstraction: deep layers (low spatial resolution, near the bottleneck) encode global structure and composition, while shallow upsampling layers encode fine-grained stylistic details such as color palettes, textures, and tonal qualities~\cite{ronneberger2015unet}. GA18C exploits this property by replacing the uniform \ipadapter{} scale with a per-block scale dictionary that selectively applies image conditioning to specific U-Net upsampling blocks. By restricting \ipadapter{} influence to deep decoder blocks, the reference image's style is transferred without overriding the text prompt's content control --- achieving content--style disentanglement.
+
+\subsection{Automatic Speech Recognition: wav2vec 2.0, Whisper, and Audio Preprocessing}
+
+wav2vec~2.0~\cite{baevski2020wav2vec2} is a self-supervised speech representation framework that pre-trains on unlabeled audio via contrastive learning over quantized latent representations, then fine-tunes with a Connectionist Temporal Classification (CTC)~\cite{graves2006ctc} head for ASR. The CTC objective marginalizes over all valid alignments:
+\begin{equation}
+P(\mathbf{y} | \mathbf{x}) = \sum_{\boldsymbol{\pi} \in \mathcal{B}^{-1}(\mathbf{y})} \prod_{t=1}^{T} P(\pi_t | \mathbf{x})
+\label{eq:ctc}
+\end{equation}
+
+Whisper~\cite{radford2023whisper} adopts an alternative encoder-decoder architecture trained on 680,000 hours of weakly supervised multilingual data, using log-mel spectrogram features and an autoregressive decoder. Whisper's scale and diversity yield strong zero-shot generalization without domain-specific fine-tuning. Both architectures require audio at 16~kHz; providing audio at an incorrect sampling rate causes temporal structure misinterpretation that severely degrades transcription quality~\cite{alammar2024}.
+
+The standard ASR evaluation metrics are Word Error Rate (WER) and Character Error Rate (CER):
+\begin{equation}
+\text{WER} = \frac{S + D + I}{N}
+\label{eq:wer}
+\end{equation}
+where \(S\), \(D\), \(I\) are substitutions, deletions, and insertions, and \(N\) is the reference word count~\cite{graves2006ctc}.
+
+\subsection{Text-to-Speech Synthesis with Bark and Neural Audio Codecs}
+
+Bark~\cite{bark2023} is a multi-stage autoregressive TTS model operating in the discrete token space of a neural audio codec. Its architecture cascades three transformer stages:
+\[
+\text{Text} \xrightarrow{\text{Stage 1}} \text{Semantic tokens} \xrightarrow{\text{Stage 2}} \text{Coarse tokens} \xrightarrow{\text{Stage 3}} \text{Fine tokens} \xrightarrow{\text{Codec}} \text{Waveform}
+\]
+EnCodec~\cite{defossez2022encodec} provides the underlying audio tokenization via Residual Vector Quantization (RVQ), which iteratively quantizes residual errors across multiple codebook levels. Coarse levels capture dominant spectral structure while fine levels encode residual acoustic detail. The \texttt{bark-small} variant uses smaller transformers at each stage, trading audio quality for reduced memory and faster inference. The model outputs audio at 24,000~Hz.
+
+\subsection{Cross-Modal Framing for Multi-Modal Generative AI}
+
+The vision and audio paradigms studied here share several unifying themes: hierarchical discrete representations (VAE latent space for images, RVQ token hierarchy for audio), cross-attention as the universal conditioning mechanism, and self-supervised pre-training as the foundation for downstream capability (CLIP for vision-language alignment, wav2vec~2.0 for speech representations). However, they differ fundamentally in control mechanism (continuous scale parameter vs.\ discrete text input), stochasticity profile (seed-dependent noise initialization vs.\ multi-stage autoregressive sampling), and evaluation methodology (qualitative visual assessment vs.\ quantitative WER/CER metrics). These parallels and contrasts motivate the cross-modal analysis in this study.
+
+%=============================================================================
+\section{Methodology}
+\label{sec:methodology}
+%=============================================================================
+
+\subsection{Experimental Infrastructure and Runtime Environment}
+
+All experiments were executed on Google Colab with NVIDIA A100 GPU acceleration. Vision experiments (GA18B, GA18C) used the \texttt{StableDiffusionXLPipeline} from the Hugging Face \texttt{diffusers} library with the \texttt{stabilityai/stable-diffusion-xl-base-1.0} model in FP16 precision, paired with \ipadapter{} weights from \texttt{h94/IP-Adapter} (\texttt{ip-adapter\_sdxl.bin}). ASR experiments (GA19B) used the Hugging Face \texttt{transformers} pipeline API with four models: \texttt{facebook/wav2vec2-base-960h}, \texttt{openai/whisper-tiny}, \texttt{openai/whisper-small}, and \texttt{openai/whisper-medium}. TTS experiments (GA19C) used the \texttt{suno/bark-small} model via the TTS pipeline. Experiments were organized into three execution groups (A:~vision, B:~ASR, C:~TTS) to manage GPU memory, with full console logs captured for each group.
+
+\subsection{Input Sources, Datasets, and Reference Assets}
+
+Image generation experiments used two reference images from the \texttt{genaibook} utility library: \texttt{SampleURL.ItemsVariation} (a photograph of household items, used as the default for GA18B) and \texttt{SampleURL.Mamoeiro} (a photograph of a papaya tree, used as the default for GA18C). All reference images were resized to \(1024 \times 1024\) pixels matching \sdxl{}'s native resolution. ASR experiments used the MINDS-14 dataset~\cite{gerz2021minds14} (\texttt{PolyAI/minds14}, \texttt{en-AU} subset), a collection of banking-intent spoken utterances in Australian English. A fixed subset of 20~samples (selected with seed~42) was used for multi-model comparison, and 10~samples for sampling-rate mismatch analysis. TTS experiments used five text inputs spanning different lengths and linguistic domains: the default GA19C text about ladybugs, a short greeting, a pangram sentence, a conversational request, a technical description, and a proper-noun sentence.
+
+\subsection{Experiment Map and Parameter Sweep Design}
+
+Seven experiments were conducted, each targeting a specific research question. Table~\ref{tab:expmap} summarizes the design.
+
+\begin{table}[htbp]
+\caption{Experiment Map and Output Summary}
+\label{tab:expmap}
+\centering
+\footnotesize
+\begin{tabular}{@{}clcl@{}}
+\toprule
+\textbf{Exp.} & \textbf{Script(s)} & \textbf{RQ} & \textbf{Outputs} \\
+\midrule
+1 & GA18B/C, GA19B/C & --- & 4 baselines \\
+2 & GA18B & RQ1 & 51 images \\
+3 & GA18C & RQ2 & 46 images \\
+4 & GA18B + GA18C & RQ3 & 34 images \\
+5 & GA19B & RQ4 & 160 transcriptions \\
+6 & GA19C & RQ5 & 20 audio files \\
+7 & GA18B, GA18C, GA19C & RQ6 & 24 outputs \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All stochastic generation calls used explicit random seeds via \texttt{torch.Generator} for reproducibility. Every parameter for every generation or inference call was logged to CSV files with timestamps.
+
+\subsection{Evaluation Strategy and Recorded Outputs}
+
+Vision experiments were evaluated qualitatively through comparative visual grids and narrative description of observed patterns. For each image, generation time was recorded. ASR experiments were evaluated quantitatively using WER and CER computed by the \texttt{jiwer} library, comparing predicted transcriptions against ground-truth annotations from the MINDS-14 dataset. TTS experiments were evaluated through audio duration, waveform RMS amplitude, generation time, and round-trip WER (generating speech with Bark, then transcribing with the best-performing ASR model). All outputs were saved to structured directories under \texttt{hw13\_experiments/} with standardized naming conventions.
+
+\subsection{Reproducibility, Logging, and Artifact Management}
+
+Every experiment logged full parameters, seeds, output paths, generation times, and timestamps to per-experiment CSV files. A consolidated \texttt{summary\_statistics.json} records aggregate metrics: 149~total images generated, 29~audio files, 164~transcriptions, and 828.2~seconds of total GPU time. Console output from all three execution groups was captured to log files in \texttt{hw13\_printouts/}. The orchestrator script (\texttt{kamp\_hw13.py}) managed experiment sequencing, parameter injection, and artifact collection, while individual experiment logic was encapsulated in helper modules (\texttt{hw13\_experiment\_runner.py}, \texttt{hw13\_data\_utils.py}).
+
+%=============================================================================
+% Results — one subsection per experiment
+%=============================================================================
+\section{Results}
+\label{sec:results}
+
+%-----------------------------------------------------------------------------
+\subsection{Experiment 1: Baseline Reproduction}
+\label{sec:exp1}
+
+Experiment~1 reproduced the default behavior of all five scripts with seed~42 to establish reference outputs for subsequent parameter variation experiments.
+
+\subsubsection{GA18B -- Uniform-Scale Image Variation Baseline}
+The GA18B baseline generated an image variation of the \texttt{ItemsVariation} reference image using \ipadapter{} with uniform scale \(\lambda = 0.8\), an empty text prompt, and 25 inference steps. Generation time was 3.428~seconds (elevated due to initial pipeline warmup; subsequent generations averaged 1.58~seconds). The output demonstrated \ipadapter{}'s ability to produce a semantically coherent variation of the reference image --- preserving high-level content and composition while introducing natural variation in fine detail.
+
+\subsubsection{GA18C -- Block-Level Style-Conditioned Generation Baseline}
+The GA18C baseline generated a style-conditioned image using the block-level scale configuration \texttt{\{"up": \{"block\_0": [0.0, 1.0, 0.0]\}\}} with the text prompt ``a cat inside of a box'' and the \texttt{Mamoeiro} (papaya tree) reference image. Generation time was 1.420~seconds. The output demonstrated content--style disentanglement: the semantic content matched the text prompt while the visual style reflected the warm, tropical character of the reference image.
+
+\subsubsection{GA19A -- Audio Dataset Inspection Baseline}
+GA19A performed dataset exploration of the MINDS-14 \texttt{en-AU} subset, confirming the dataset structure including audio waveforms, sampling rates, intent classes, and transcription annotations. This script does not produce generated outputs but validated the data pipeline for subsequent ASR experiments.
+
+\subsubsection{GA19B -- Baseline Automatic Speech Recognition Output}
+The GA19B baseline transcribed a MINDS-14 utterance using the default \texttt{facebook/wav2vec2-base-960h} model at 16~kHz sampling rate. The predicted transcription exhibited substantial word-level errors (WER~=~0.459), particularly with the Australian English accent and conversational speech patterns. Inference time was 1.153~seconds for a 22.3-second audio clip.
+
+\subsubsection{GA19C -- Baseline Bark Text-to-Speech Output}
+The GA19C baseline synthesized speech from the default text using \texttt{suno/bark-small} with seed~42. The generated audio was 8.587~seconds at 24,000~Hz with an RMS amplitude of 0.023. Generation time was 21.643~seconds --- approximately 2.5 times the audio duration --- reflecting the computational cost of Bark's three-stage autoregressive pipeline.
+
+\subsubsection{Baseline Synthesis}
+The baselines confirmed that all five pipelines produce valid outputs with their default configurations. Key observations: (1)~\ipadapter{} image generation with \sdxl{} is computationally moderate ({\raise.17ex\hbox{$\scriptstyle\sim$}}1.5~seconds per image after warmup), (2)~Bark TTS is computationally expensive relative to output duration, and (3)~the default wav2vec~2.0 ASR model produces noticeable errors on Australian-accented conversational speech.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{figures/exp1_baseline_gallery.png}
+\caption{Baseline outputs from all five scripts (GA18B, GA18C, GA19A, GA19B, GA19C) generated with default parameters and seed~42.}
+\label{fig:exp1_baseline}
+\end{figure}
+
+%-----------------------------------------------------------------------------
+\subsection{Experiment 2: IP-Adapter Uniform Scale Sensitivity (GA18B)}
+\label{sec:exp2}
+
+This experiment directly addresses RQ1 by sweeping the uniform \ipadapter{} scale \(\lambda\) across the full \([0.0,\,1.0]\) range.
+
+\subsubsection{Experimental Conditions}
+Three sub-experiments totaling 51 images were conducted:
+\begin{itemize}
+\item \textbf{2A (Primary sweep):} 11 scale values \(\lambda \in \{0.0, 0.1, \ldots, 1.0\}\) with three seeds (42, 123, 456) and an empty text prompt using the \texttt{ItemsVariation} reference. Total: 33~images.
+\item \textbf{2B (Alternative reference):} 6 scale values with two seeds using the \texttt{Mamoeiro} reference. Total: 12~images.
+\item \textbf{2C (Inference steps variation):} Three step counts \(\{10, 25, 50\}\) at fixed \(\lambda = 0.8\) with two seeds. Total: 6~images.
+\end{itemize}
+
+\subsubsection{Quantitative Trends and Qualitative Comparisons}
+Mean generation time across the primary sweep was approximately 1.55~seconds per image, with minimal variation across scale values (1.416~s at \(\lambda = 0.0\) to 1.597~s at \(\lambda = 0.5\)). The \ipadapter{} scale does not appreciably affect computational cost.
+
+Visual inspection of the 33-image primary sweep grid reveals a nonlinear transition. At \(\lambda = 0.0\), outputs are unconditioned generations bearing no resemblance to the reference image. From \(\lambda = 0.1\) to \(\lambda = 0.3\), reference image characteristics begin to emerge subtly. The range \(\lambda \in [0.4, 0.6]\) represents the most perceptually dynamic regime, where outputs maintain clear semantic connection to the reference while exhibiting meaningful variation. At \(\lambda \geq 0.7\), outputs converge increasingly toward the reference image, with \(\lambda = 1.0\) producing outputs that closely resemble the reference in content, composition, and color palette while remaining distinct generated images.
+
+Sub-experiment~2B confirmed that the scale-fidelity relationship generalizes across reference images. Sub-experiment~2C showed that at \(\lambda = 0.8\), 25~inference steps provide a sufficient denoising trajectory, with 50~steps producing comparable results and 10~steps yielding slightly reduced fine-detail quality.
+
+\subsubsection{Interpretation Relative to RQ1}
+The results confirm the hypothesized nonlinear relationship between \(\lambda\) and reference fidelity. The \ipadapter{} scale provides a continuous, monotonic control from unconditioned generation (\(\lambda = 0\)) to reference-guided synthesis (\(\lambda = 1\)), with the most compositionally interesting variation concentrated in the \([0.4, 0.7]\) range. The steepest perceptual change occurs between \(\lambda = 0.2\) and \(\lambda = 0.5\). The relationship generalizes across reference images and is robust to inference step variation.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth,height=0.85\textheight,keepaspectratio]{figures/ga18b_scale_sweep_grid.png}
+\caption{Grid of GA18B outputs across \ipadapter{} uniform scale values from 0.0 to 1.0 with multiple seeds.}
+\label{fig:ga18b_scale_sweep}
+\end{figure}
+
+%-----------------------------------------------------------------------------
+\subsection{Experiment 3: Block-Level Scale Configurations for Content--Style Disentanglement (GA18C)}
+\label{sec:exp3}
+
+This experiment addresses RQ2 by systematically exploring alternative block-level \ipadapter{} configurations beyond the default.
+
+\subsubsection{Experimental Conditions}
+Five sub-experiments totaling 46 images, all using the text prompt ``a cat inside of a box'' and the \texttt{Mamoeiro} reference image unless otherwise noted:
+\begin{itemize}
+\item \textbf{3A (Layer variation within block~0):} Six layer configurations --- \([1,0,0]\), \([0,1,0]\) (default), \([0,0,1]\), \([1,1,0]\), \([0,1,1]\), \([1,1,1]\) --- with three seeds each. Total: 18~images.
+\item \textbf{3B (Block selection):} The \([0,1,0]\) configuration applied to \texttt{block\_0}, \texttt{block\_1}, and \texttt{block\_2} with two seeds each. Total: 6~images.
+\item \textbf{3C (Scale intensity):} Five scale values \(s \in \{0.25, 0.5, 0.75, 1.0, 1.5\}\) for the active layer within \texttt{block\_0} with two seeds each. Total: 10~images.
+\item \textbf{3D (Alternative prompts):} Four semantically diverse prompts with the default block config and two seeds each. Total: 8~images.
+\item \textbf{3E (Alternative reference):} Two reference images with the default block config and two seeds each. Total: 4~images.
+\end{itemize}
+
+Generation time was consistently 1.44~seconds across all configurations, confirming that block-level scale selection does not affect computational cost.
+
+\subsubsection{Configuration-by-Configuration Findings}
+\textbf{Layer variation (3A):} Different cross-attention layers within \texttt{block\_0} produced measurably different style transfer characteristics. Single-layer activations each transferred recognizable stylistic elements --- warm tropical tones, organic textures --- while preserving the text prompt's content. Multi-layer activations produced progressively stronger style transfer, with the all-layers-active configuration \([1,1,1]\) exhibiting the most pronounced reference image influence.
+
+\textbf{Block selection (3B):} \texttt{block\_0} (deepest, lowest resolution) transferred the most global stylistic attributes --- overall color temperature and tonal character. \texttt{block\_1} modulated style at a somewhat more localized level. \texttt{block\_2} (shallowest) had the least visible style transfer effect, confirming the hierarchical feature encoding hypothesis: high-resolution upsampling layers encode content-specific spatial detail rather than transferable stylistic attributes.
+
+\textbf{Scale intensity (3C):} At \(s = 0.25\), style transfer was subtle. At \(s = 0.75\), the tropical character was clearly evident. At \(s = 1.5\) (supermaximal), the reference image's influence was strong enough to partially compete with the text prompt's content specification. The \(s \in [0.5, 1.0]\) range represents the optimal balance for disentangled style transfer.
+
+\textbf{Prompt robustness (3D):} All four semantically diverse prompts (landscapes, portraits, cityscapes) produced outputs with appropriate semantic content rendered in the warm tropical style of the reference image. The content--style disentanglement was robust across semantic domains.
+
+\textbf{Reference image generalization (3E):} Replacing the \texttt{Mamoeiro} reference with \texttt{ItemsVariation} changed the transferred stylistic attributes accordingly, confirming that the mechanism generalizes across style source images.
+
+\subsubsection{Interpretation Relative to RQ2}
+The key findings are: (1)~individual cross-attention layers within a block make distinct stylistic contributions, with multi-layer activation producing additive effects; (2)~deeper upsampling blocks transfer more global stylistic attributes while shallower blocks have diminishing impact; (3)~the block-level scale provides continuous intensity control; and (4)~the content--style disentanglement is robust across diverse text prompts and reference images. The default configuration represents one well-balanced point in a rich design space.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{figures/ga18c_block_comparison.png}
+\caption{Comparison of GA18C outputs across different block-level \ipadapter{} configurations.}
+\label{fig:ga18c_block}
+\end{figure}
+
+%-----------------------------------------------------------------------------
+\subsection{Experiment 4: Text--Image Conditioning Interaction}
+\label{sec:exp4}
+
+This experiment addresses RQ3 by examining the interaction between uniform \ipadapter{} image conditioning and an active text prompt, and by directly comparing uniform versus block-level conditioning under matched conditions.
+
+\subsubsection{Experimental Conditions}
+Five sub-experiments totaling 34 images:
+\begin{itemize}
+\item \textbf{4A (Scale sweep with text):} \(\lambda \in \{0.0, 0.2, 0.4, 0.6, 0.8, 1.0\}\) with the prompt ``a beautiful sunset over the ocean'' and \texttt{ItemsVariation} reference, two seeds per condition. Total: 12~images.
+\item \textbf{4B (Prompt specificity):} Three prompts of varying specificity --- minimal (``scene''), moderate (``a beautiful sunset over the ocean''), and detailed (a long photorealistic description) --- at fixed \(\lambda = 0.5\), two seeds each. Total: 6~images.
+\item \textbf{4C (Semantic compatibility):} Three prompts varying in compatibility with the reference --- compatible (``household items on a table''), incompatible (``a mountain landscape at sunset''), and neutral (``an abstract painting'') --- at \(\lambda = 0.5\), two seeds each. Total: 6~images.
+\item \textbf{4D (Block-level with varied prompts):} Two prompts under the default block-level configuration, two seeds each. Total: 4~images.
+\item \textbf{4E (Uniform vs.\ block-level):} Uniform (\(\lambda = 0.5\)) versus block-level (default) conditioning with the prompt ``a cat inside of a box'' and \texttt{Mamoeiro} reference, three seeds each. Total: 6~images.
+\end{itemize}
+
+\subsubsection{Interaction Findings}
+\textbf{Scale--prompt balance (4A):} At \(\lambda = 0.0\), outputs depicted sunset scenes consistent with the text prompt. At \(\lambda = 0.4\)--\(0.6\), both modalities contributed visibly. At \(\lambda = 0.8\)--\(1.0\), the reference image dominated and the sunset prompt had minimal visible effect. Generation times increased slightly with scale (1.428~s at \(\lambda = 0.0\) to 1.618~s at \(\lambda = 1.0\)).
+
+\textbf{Prompt specificity (4B):} At \(\lambda = 0.5\), more specific text prompts maintained greater influence over the output. The minimal prompt produced outputs heavily influenced by the reference image, while the detailed prompt competed more effectively against image conditioning.
+
+\textbf{Semantic compatibility (4C):} Semantically compatible prompts produced more coherent outputs. The compatible prompt (``household items on a table'') created a harmonious blend with the reference, while the incompatible prompt produced outputs with visible tension between conditioning signals.
+
+\textbf{Uniform vs.\ block-level comparison (4E):} Under matched conditions, uniform scaling at \(\lambda = 0.5\) applied the reference image's influence holistically --- affecting both content and style. Block-level scaling applied the influence selectively to style while preserving text-driven content. This is the fundamental distinction.
+
+\subsubsection{Interpretation Relative to RQ3}
+The text and image conditioning signals interact additively as predicted by the decoupled cross-attention architecture:
+\begin{equation}
+\mathbf{Z} = \mathbf{Z}_{\text{text}} + \lambda \cdot \mathbf{Z}_{\text{image}}
+\end{equation}
+At low \(\lambda\), the text prompt dominates; at high \(\lambda\), image conditioning dominates; in between, both contribute. Prompt specificity modulates the effective text contribution. Semantic compatibility between text and image improves output coherence. The uniform vs.\ block-level distinction is the most important structural finding: block-level scaling provides a principled mechanism for style-only transfer that uniform scaling cannot achieve.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{figures/uniform_vs_block_comparison.png}
+\caption{Direct comparison of uniform-scale versus block-level \ipadapter{} conditioning under matched conditions.}
+\label{fig:uniform_vs_block}
+\end{figure}
+
+%-----------------------------------------------------------------------------
+\subsection{Experiment 5: ASR Model Comparison and Sampling-Rate Robustness (GA19B)}
+\label{sec:exp5}
+
+This experiment addresses RQ4 through a quantitative comparison of four ASR models on correctly resampled audio and a robustness analysis under sampling rate mismatch.
+
+\subsubsection{Experimental Conditions}
+\begin{itemize}
+\item \textbf{5A (Multi-model comparison):} Four models --- \texttt{wav2vec2-base-960h}, \texttt{whisper-tiny}, \texttt{whisper-small}, \texttt{whisper-medium} --- evaluated on 20 MINDS-14 samples at 16~kHz. Total: 80~transcriptions.
+\item \textbf{5B (Sampling rate mismatch):} Two models (wav2vec~2.0 and Whisper-small) evaluated on 40 samples at 8~kHz (native, no resampling). Total: 80~transcriptions.
+\end{itemize}
+
+\subsubsection{Multi-Model Comparison at 16~kHz}
+
+\begin{table}[htbp]
+\caption{ASR Model Comparison on MINDS-14 (16~kHz)}
+\label{tab:asr_models}
+\centering
+\footnotesize
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Model} & \textbf{Mean WER} & \textbf{WER Std} & \textbf{Mean CER} & \textbf{Mean Time (s)} \\
+\midrule
+wav2vec2-base-960h & 0.407 & 0.338 & 0.211 & 0.030 \\
+whisper-tiny & 0.259 & 0.267 & 0.145 & 0.179 \\
+whisper-small & 0.180 & 0.233 & 0.103 & 0.417 \\
+whisper-medium & 0.172 & 0.225 & 0.100 & 0.741 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Whisper-medium achieved the lowest mean WER (0.172), followed closely by Whisper-small (0.180). wav2vec~2.0 had the highest error rate (0.407~WER) but was dramatically faster at 0.030~seconds --- approximately 25\(\times\) faster than Whisper-medium. The WER standard deviations (0.22--0.34) reflect the heterogeneity of the MINDS-14 samples.
+
+\subsubsection{Sampling Rate Mismatch at 8~kHz}
+
+\begin{table}[htbp]
+\caption{Effect of Sampling Rate Mismatch on ASR WER}
+\label{tab:sr_mismatch}
+\centering
+\footnotesize
+\begin{tabular}{@{}lccc@{}}
+\toprule
+\textbf{Model} & \textbf{16~kHz WER} & \textbf{8~kHz WER} & \textbf{WER Increase} \\
+\midrule
+wav2vec2-base-960h & 0.407 & 0.747 & +0.340 (83\%) \\
+whisper-small & 0.180 & 0.412 & +0.232 (129\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Providing audio at 8~kHz without resampling produced severe degradation for both architectures. Both models interpreted the 8~kHz audio as if it were playing at half speed with halved frequency content, causing systematic temporal and spectral misinterpretation.
+
+\subsubsection{Interpretation Relative to RQ4}
+Whisper models substantially outperform wav2vec~2.0 on MINDS-14, confirming the practical advantage of large-scale weakly supervised training for domain-general ASR. Performance improves monotonically with model size across Whisper variants, though the marginal gain from small to medium is modest (0.180~$\to$~0.172) while computational cost more than doubles. Sampling rate mismatch produces near-catastrophic WER degradation for both architectures, confirming that correct audio preprocessing is a critical prerequisite for ASR deployment.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{figures/asr_model_comparison_bar.png}
+\caption{Mean WER and CER across four ASR models evaluated on 20 MINDS-14 samples at 16~kHz.}
+\label{fig:asr_model_bar}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{figures/asr_sampling_rate_effect.png}
+\caption{Effect of sampling rate mismatch on ASR WER for wav2vec~2.0 and Whisper-small.}
+\label{fig:asr_sr_effect}
+\end{figure}
+
+%-----------------------------------------------------------------------------
+\subsection{Experiment 6: Bark TTS Consistency and Variation (GA19C)}
+\label{sec:exp6}
+
+This experiment addresses RQ5 by examining Bark's output variation across repeated generations with different seeds and across text inputs of varying length, complexity, and domain.
+
+\subsubsection{Experimental Conditions}
+Four sub-experiments totaling 20 audio files:
+\begin{itemize}
+\item \textbf{6A (Repeated generation):} The default ladybug text with 5 seeds.  
+\item \textbf{6B (Text length variation):} Short ({\raise.17ex\hbox{$\scriptstyle\sim$}}5 words), medium ({\raise.17ex\hbox{$\scriptstyle\sim$}}17 words), and long ({\raise.17ex\hbox{$\scriptstyle\sim$}}30 words) texts with 2 seeds each. Total: 6.
+\item \textbf{6C (Text domain/complexity):} Conversational, technical, and proper-noun texts with 2 seeds each. Total: 6.
+\item \textbf{6D (Round-trip TTS$\to$ASR):} Three texts evaluated via round-trip WER. Total: 3.
+\end{itemize}
+
+\subsubsection{Variation and Audio Quality}
+\textbf{Repeated generation (6A):} Five generations of identical text produced audio durations ranging from 7.43 to 12.93~seconds (mean~9.85, std~2.09), a 74\% range relative to the shortest output. RMS amplitude varied from 0.023 to 0.143 --- a six-fold range. Generation times ranged from 17.48 to 29.91~seconds (mean~22.95). Semantic content remained consistent but prosodic realization varied meaningfully.
+
+\textbf{Text length variation (6B):} Short texts (5 words) produced 3.17~s mean audio with 7.45~s mean generation time. Medium texts (17 words) produced 8.01~s audio with 18.58~s generation time. Long texts (30 words) produced 13.79~s audio with 31.89~s generation time. The generation-time-to-audio-duration ratio was approximately 2.3--2.4$\times$ across all lengths.
+
+\textbf{Text domain (6C):} Conversational text produced dynamic prosody. Technical text produced more monotone delivery with narrow RMS range (0.032 mean). Proper-noun text (``Professor Schwarzenegger from the University of Cincinnati\ldots'') produced notably lower RMS amplitude (0.026 mean), suggesting reduced prosodic confidence with unusual proper nouns.
+
+\subsubsection{Round-Trip Evaluation}
+
+\begin{table}[htbp]
+\caption{Round-Trip TTS$\to$ASR WER}
+\label{tab:roundtrip}
+\centering
+\footnotesize
+\begin{tabular}{@{}lc@{}}
+\toprule
+\textbf{Text Category} & \textbf{Round-Trip WER} \\
+\midrule
+Short (``Hello, how are you?'') & 0.250 \\
+Technical (CNN description) & 0.231 \\
+Proper nouns (Prof.\ Schwarzenegger\ldots) & 0.000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The proper-noun text achieved perfect round-trip WER (0.0), indicating fully intelligible and phonetically accurate generated speech.
+
+\subsubsection{Interpretation Relative to RQ5}
+Bark produces appreciable variation across repeated generations --- consistent semantic content with varying prosodic realization --- confirming the inherently stochastic three-stage autoregressive architecture. Audio duration variability of $\pm$21\% (std/mean) indicates that Bark's speaking rate is not tightly controlled. Generation time scales linearly with text length at {\raise.17ex\hbox{$\scriptstyle\sim$}}2.3$\times$ real-time audio duration. The round-trip evaluation demonstrates general intelligibility, with perfect reconstruction achieved in one case.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{figures/tts_generation_time_scaling.png}
+\caption{Bark TTS generation time as a function of text input length and category.}
+\label{fig:tts_gen_time}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{figures/tts_round_trip_wer.png}
+\caption{Round-trip TTS-to-ASR WER for three text categories processed through the Bark-to-Whisper pipeline.}
+\label{fig:tts_roundtrip}
+\end{figure}
+
+%-----------------------------------------------------------------------------
+\subsection{Experiment 7: Seed Sensitivity and Reproducibility}
+\label{sec:exp7}
+
+This experiment addresses RQ6 by comparing seed sensitivity across three generative paradigms under fixed default parameters.
+
+\subsubsection{Experimental Conditions}
+Eight seeds (42, 123, 456, 789, 1024, 2048, 3000, 4096) were applied to each paradigm:
+\begin{itemize}
+\item \textbf{GA18B:} \(\lambda = 0.8\), empty prompt, \texttt{ItemsVariation} reference. 8~images.
+\item \textbf{GA18C:} Default block config, ``a cat inside of a box'', \texttt{Mamoeiro} reference. 8~images.
+\item \textbf{GA19C:} Default ladybug text, \texttt{bark-small}. 8~audio files.
+\end{itemize}
+GA19B was excluded because the ASR pipeline is deterministic given identical model and audio input.
+
+\subsubsection{Reproducibility Findings}
+\textbf{GA18B (uniform scale):} Mean generation time 1.550~s with very low variation (std~0.043). Across eight seeds at \(\lambda = 0.8\), generated images maintained strong semantic consistency with the reference. Variation was limited to fine-grained details: specific object arrangements, texture patterns, and minor compositional shifts.
+
+\textbf{GA18C (block-level):} Mean generation time 1.425~s with extremely low variation (std~0.004). The block-level configuration produced even more consistent outputs across seeds than the uniform-scale configuration. The combination of an active text prompt (constraining content) and block-level image conditioning (constraining style) leaves relatively little freedom for seed-dependent variation.
+
+\textbf{GA19C (Bark TTS):} Mean generation time 22.465~s with substantial variation (std~3.889, coefficient of variation 17.3\%). Generation times ranged from 17.40 to 30.19~seconds --- a 1.73$\times$ ratio between fastest and slowest. This reflects the non-deterministic nature of autoregressive sampling across Bark's three transformer stages.
+
+\subsubsection{Interpretation Relative to RQ6}
+Seed sensitivity varies dramatically across paradigms. The ranking from lowest to highest is: GA18C (block-level) $<$ GA18B (uniform-scale) $<$ GA19C (Bark TTS). The vision paradigms exhibit low seed sensitivity because conditioning signals strongly constrain the diffusion process, leaving the initial noise tensor as a secondary influence. Bark TTS exhibits high seed sensitivity because autoregressive sampling at each of three stages amplifies stochastic variation multiplicatively. Practical implication: \ipadapter{} image generation is highly reproducible across seeds, while Bark TTS outputs should be generated with multiple seeds and the best result selected.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{figures/seed_sensitivity_summary.png}
+\caption{Seed sensitivity comparison across GA18B, GA18C, and GA19C showing generation time variability across 8~seeds per paradigm.}
+\label{fig:seed_sensitivity}
+\end{figure}
+
+%=============================================================================
+\section{Discussion}
+\label{sec:discussion}
+%=============================================================================
+
+\subsection{Synthesis Across Vision Experiments (RQ1--RQ3)}
+
+The three vision experiments collectively characterize the \ipadapter{} conditioning design space along three axes: scale magnitude (RQ1), scale topology (RQ2), and multi-modal interaction (RQ3). A unifying theme is the additive cross-attention architecture \(\mathbf{Z} = \mathbf{Z}_{\text{text}} + \lambda \cdot \mathbf{Z}_{\text{image}}\), which provides predictable, continuous control over the text--image balance. The uniform scale parameter \(\lambda\) offers a single-dimensional control that simultaneously affects content and style transfer. Block-level scaling introduces a second control dimension --- spatial selectivity --- that disentangles content from style by exploiting the U-Net's hierarchical feature encoding.
+
+The practical implication is a two-tier control framework: (1)~use uniform scaling when the goal is holistic image variation with controllable reference fidelity (recommended range: \(\lambda \in [0.4, 0.7]\)), and (2)~use block-level scaling when the goal is style-only transfer with independent content specification (recommended: deep blocks with \(s \in [0.5, 1.0]\)). The 131 images generated across Experiments~2--4 support this framework with consistent empirical evidence across multiple reference images, text prompts, and seeds.
+
+\subsection{Synthesis Across Audio Experiments (RQ4--RQ5)}
+
+The audio experiments reveal a fundamental asymmetry between the recognition (ASR) and generation (TTS) sides of the speech--text loop. ASR is a deterministic discriminative task with well-established quantitative metrics (WER, CER), while TTS is a stochastic generative task where evaluation is inherently more subjective and approximate. The Whisper family's consistent superiority over wav2vec~2.0 on MINDS-14 confirms the practical advantage of large-scale weakly supervised training on diverse data for domain-general ASR. The sampling-rate mismatch analysis (WER nearly doubling for both architectures) underscores that even powerful models are fundamentally dependent on correct input preprocessing.
+
+Bark's TTS analysis reveals a system with high generative flexibility at the cost of considerable computational overhead (mean 19.2~seconds per generation) and limited fine-grained control. The round-trip evaluation provides a bridge between the TTS and ASR experiments, demonstrating that Bark-generated speech is sufficiently intelligible for ASR transcription in most cases, with round-trip WER ranging from 0.0 to 0.25.
+
+\subsection{Reproducibility and Stability Insights (RQ6)}
+
+The seed sensitivity analysis quantifies a fundamental difference in the determinism of diffusion-based and autoregressive generative paradigms. \ipadapter{} image generation with \sdxl{} exhibits low seed sensitivity (generation time CoV: 2.8\% for uniform, 0.3\% for block-level), consistent with the strong conditioning constraints imposed by the CLIP image embedding and text prompt. Bark TTS exhibits high seed sensitivity (generation time CoV: 17.3\%), reflecting multiplicative amplification of stochastic variation across three autoregressive stages.
+
+For \ipadapter{} experiments, a small number of seeds (2--3) is sufficient to capture the variability range. For Bark TTS, a larger seed exploration (5+) is advisable, and users should expect meaningful output variation across generations.
+
+\subsection{Cross-Modal Comparison and Trade-Off Analysis (RQ7)}
+
+The cross-modal analysis synthesizes timing, controllability, and evaluation data across all four paradigms.
+
+\begin{table}[htbp]
+\caption{Cross-Modal Paradigm Comparison}
+\label{tab:crossmodal}
+\centering
+\footnotesize
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+\textbf{Dimension} & \textbf{GA18B/C} & \textbf{GA19B} & \textbf{GA19C} \\
+\midrule
+Mean time/output & 1.5/1.4~s & 0.28~s & 19.2~s \\
+Controllable params & 5--6 & 3 & 2 \\
+Stochasticity & Low--mod. & Determ. & High \\
+Evaluation & Qualitative & WER/CER & Round-trip \\
+Conditioning & CLIP img+text & Audio & Text tokens \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The \ipadapter{} image paradigm offers the richest control surface with moderate computational cost. ASR is the fastest and only deterministic paradigm. Bark TTS has the highest computational cost and stochasticity --- yet achieves the remarkable feat of converting text into naturalistic audio. A key structural insight is the trade-off between controllability and diversity: \ipadapter{} provides continuous, fine-grained control via \(\lambda\) and block configurations that constrains output diversity at high conditioning strength, while Bark provides coarse control with high output diversity. This trade-off appears fundamental to the diffusion-versus-autoregressive architectural distinction.
+
+\subsection{Limitations and Validity Considerations}
+
+Several limitations should be noted. First, the vision experiments rely on qualitative evaluation --- no pixel-level similarity metrics (e.g., SSIM, LPIPS) or perceptual quality scores (e.g., FID) were computed. Second, the MINDS-14 evaluation used 20~samples per model, limiting statistical power for detecting small WER differences between Whisper-small and Whisper-medium. Third, the Bark analysis used the \texttt{bark-small} variant; the full \texttt{suno/bark} model may exhibit different characteristics. Fourth, all experiments were conducted on a single GPU type (A100), and timing measurements may not generalize to other hardware. Fifth, the round-trip TTS$\to$ASR evaluation provides only an indirect measure of TTS quality.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{figures/cross_modal_comparison_table_v2.png}
+\caption{Cross-modal comparison summarizing controllability, stochasticity, computational cost, and evaluation methodology across all paradigms.}
+\label{fig:cross_modal}
+\end{figure}
+
+%=============================================================================
+\section{Conclusions}
+\label{sec:conclusions}
+%=============================================================================
+
+This study presents a systematic experimental investigation of multi-modal generative AI across vision and audio domains. Seven experiments generated 149~images, 29~audio files, and 164~ASR transcriptions totaling 828.2~seconds of GPU compute, addressing seven research questions.
+
+\subsection{Consolidated Answers to the Research Questions}
+
+\textbf{RQ1 (Uniform scale):} The \ipadapter{} scale \(\lambda\) produces a nonlinear, monotonic transition from unconditioned generation to reference-guided synthesis, with the most perceptually interesting variation in the \([0.4, 0.7]\) range. The relationship is smooth and generalizes across reference images.
+
+\textbf{RQ2 (Block-level configurations):} Different block-level configurations produce meaningfully different style transfer outcomes. Deeper blocks transfer global stylistic attributes, multi-layer activation produces additive effects, and the content--style disentanglement is robust across diverse text prompts and reference images.
+
+\textbf{RQ3 (Text--image interaction):} Text and image conditioning interact additively. The transition from text-dominated to image-dominated output is gradual. Prompt specificity modulates the effective text contribution, and semantic compatibility between text and image improves output coherence.
+
+\textbf{RQ4 (ASR models and preprocessing):} Whisper-medium achieved the lowest WER (0.172) on MINDS-14, outperforming wav2vec~2.0 (0.407~WER) at the cost of 25$\times$ longer inference time. Sampling rate mismatch produced near-catastrophic WER degradation for both architectures.
+
+\textbf{RQ5 (Bark TTS):} Bark produces substantial prosodic variation across seeds (duration std: 21\% of mean) with consistent semantic content. Generation time scales linearly with text length at {\raise.17ex\hbox{$\scriptstyle\sim$}}2.3$\times$ real-time. Round-trip TTS$\to$ASR evaluation confirms general intelligibility.
+
+\textbf{RQ6 (Seed sensitivity):} Seed sensitivity varies dramatically --- very low for \ipadapter{} image generation (especially block-level) and high for Bark TTS, reflecting the fundamental architectural difference between conditioned diffusion and multi-stage autoregressive sampling.
+
+\textbf{RQ7 (Cross-modal trade-offs):} \ipadapter{} provides rich, continuous, fine-grained control with moderate cost. ASR is fast and deterministic. Bark TTS achieves remarkable text-to-audio transformation with high stochasticity and computational cost. The controllability--diversity trade-off appears fundamental to the diffusion-versus-autoregressive distinction.
+
+\subsection{Final Takeaways}
+
+The \ipadapter{} framework demonstrates that powerful conditioning modalities can be added to frozen diffusion models via lightweight adapters with decoupled cross-attention --- a paradigm of efficient, modular generative control. Block-level scaling extends this to structured conditioning, enabling content--style disentanglement that uniform scaling cannot achieve. For ASR deployment, model selection and correct preprocessing are both critical, with Whisper offering the best accuracy--cost trade-off. Bark TTS, while computationally expensive and stochastically variable, achieves naturalistic speech synthesis through an elegant three-stage autoregressive cascade over discrete audio tokens.
+
+%=============================================================================
+\section{Future Work}
+\label{sec:futurework}
+%=============================================================================
+
+\subsection{Vision Extensions}
+
+Future work in the vision domain could: (1)~compute pixel-level similarity metrics (SSIM, LPIPS) and perceptual quality scores (FID) to complement the qualitative analysis with quantitative reference-fidelity curves; (2)~explore the full combinatorial space of multi-block configurations --- simultaneously activating layers across multiple upsampling blocks --- to characterize synergistic and antagonistic block interactions; (3)~investigate \ipadapter{} behavior with \sdxl{}'s refiner model or alternative base models to test the generality of the scale-fidelity relationships.
+
+\subsection{Audio Extensions}
+
+In the audio domain, future work could: (1)~expand the ASR evaluation to the full MINDS-14 multilingual subset to characterize cross-lingual robustness; (2)~compare \texttt{bark-small} against the full \texttt{suno/bark} model to quantify the quality--efficiency trade-off; (3)~investigate Bark's speaker embedding and voice preset capabilities for controlled speaker variation; (4)~apply more sophisticated TTS evaluation metrics (MOS estimation, spectral analysis) to complement the round-trip WER approach.
+
+\subsection{Cross-Modal Extensions}
+
+At the cross-modal level, future work could: (1)~design a unified framework for comparing controllability across generative paradigms using information-theoretic measures; (2)~investigate hybrid pipelines that chain Bark TTS output with diffusion-based audio-to-image systems; (3)~conduct a systematic comparison of adapter-based conditioning (\ipadapter{}) with other efficient adaptation methods (LoRA, textual inversion) across both vision and audio domains.
+
+%=============================================================================
+% References — entries to be populated in Batch 4
+%=============================================================================
+\begin{thebibliography}{99}
+
+\bibitem{ho2020ddpm}
+J.~Ho, A.~Jain, and P.~Abbeel, ``Denoising diffusion probabilistic models,'' in \textit{Advances in Neural Information Processing Systems (NeurIPS)}, vol.~33, pp.~6840--6851, 2020.
+
+\bibitem{rombach2022ldm}
+R.~Rombach, A.~Blattmann, D.~Lorenz, P.~Esser, and B.~Ommer, ``High-resolution image synthesis with latent diffusion models,'' in \textit{Proc. IEEE/CVF Conf. Computer Vision and Pattern Recognition (CVPR)}, pp.~10684--10695, 2022.
+
+\bibitem{ronneberger2015unet}
+O.~Ronneberger, P.~Fischer, and T.~Brox, ``U-Net: Convolutional networks for biomedical image segmentation,'' in \textit{Medical Image Computing and Computer-Assisted Intervention (MICCAI)}, pp.~234--241, 2015.
+
+\bibitem{radford2021clip}
+A.~Radford, J.~W.~Kim, C.~Hallacy, A.~Ramesh, G.~Goh, S.~Agarwal, G.~Sastry, A.~Askell, P.~Mishkin, J.~Clark, G.~Krueger, and I.~Sutskever, ``Learning transferable visual models from natural language supervision,'' in \textit{Proc. 38th Int. Conf. Machine Learning (ICML)}, pp.~8748--8763, 2021.
+
+\bibitem{podell2023sdxl}
+D.~Podell, Z.~English, K.~Lacey, A.~Blattmann, T.~Dockhorn, J.~Muller, J.~Penna, and R.~Rombach, ``SDXL: Improving latent diffusion models for high-resolution image synthesis,'' \textit{arXiv preprint arXiv:2307.01952}, 2023.
+
+\bibitem{ho2022cfg}
+J.~Ho and T.~Salimans, ``Classifier-free diffusion guidance,'' \textit{arXiv preprint arXiv:2207.12598}, 2022.
+
+\bibitem{ye2023ipadapter}
+H.~Ye, J.~Zhang, S.~Liu, X.~Han, and W.~Yang, ``IP-Adapter: Text compatible image prompt adapter for text-to-image diffusion models,'' \textit{arXiv preprint arXiv:2308.06721}, 2023.
+
+\bibitem{baevski2020wav2vec2}
+A.~Baevski, Y.~Zhou, A.~Mohamed, and M.~Auli, ``wav2vec 2.0: A framework for self-supervised learning of speech representations,'' in \textit{Advances in Neural Information Processing Systems (NeurIPS)}, vol.~33, pp.~12449--12460, 2020.
+
+\bibitem{graves2006ctc}
+A.~Graves, S.~Fernandez, F.~Gomez, and J.~Schmidhuber, ``Connectionist temporal classification: Labelling unsegmented sequence data with recurrent neural networks,'' in \textit{Proc. 23rd Int. Conf. Machine Learning (ICML)}, pp.~369--376, 2006.
+
+\bibitem{radford2023whisper}
+A.~Radford, J.~W.~Kim, T.~Xu, G.~Brockman, C.~McLeavey, and I.~Sutskever, ``Robust speech recognition via large-scale weak supervision,'' in \textit{Proc. 40th Int. Conf. Machine Learning (ICML)}, pp.~28492--28518, 2023.
+
+\bibitem{bark2023}
+Suno~AI, ``Bark: Text-prompted generative audio model,'' GitHub repository, 2023.
+
+\bibitem{defossez2022encodec}
+A.~Defossez, J.~Copet, G.~Synnaeve, and Y.~Adi, ``High fidelity neural audio compression,'' \textit{Trans. Machine Learning Research (TMLR)}, 2023.
+
+\bibitem{gerz2021minds14}
+D.~Gerz, I.~Vulic, E.~M.~Ponti, J.~Buber, N.~Mrksic, S.~Coope, A.~Razavi, M.~Steedman, and M.~Henderson, ``Multilingual and cross-lingual intent detection from spoken data,'' in \textit{Proc. Conf. Empirical Methods in Natural Language Processing (EMNLP)}, pp.~4698--4713, 2021.
+
+\bibitem{alammar2024}
+J.~Alammar and M.~Grootendorst, \textit{Hands-on Generative AI with Transformers and Diffusion Models}.\hskip 1em O'Reilly Media, 2024.
+
+\end{thebibliography}
+
+\end{document}

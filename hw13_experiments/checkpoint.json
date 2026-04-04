@@ -1,0 +1,12 @@
+{
+  "completed_groups": [],
+  "group_b_completed_sub_experiments": [
+    "5a_facebook_wav2vec2_base_960h",
+    "5a_openai_whisper_small",
+    "5a_openai_whisper_tiny",
+    "exp1_ga19a",
+    "exp1_ga19b"
+  ],
+  "last_completed_step": "Group B 5a_openai_whisper_small",
+  "timestamp": "2026-04-01T17:49:57.983674"
+}

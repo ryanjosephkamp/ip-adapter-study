@@ -1,0 +1,31 @@
+﻿Experiment,Image File Name,Image Description
+1,exp1_baseline_gallery.png,Baseline output gallery showing the default-parameter results for each of the five scripts. This establishes the reference conditions against which all subsequent parameter-variation experiments are compared.
+2,ga18b_reference_comparison.png,
+2,ga18b_scale_sweep_grid.png,"IP-Adapter uniform scale sweep grid showing generated images across $\lambda \in \{0.0, 0.1, \ldots, 1.0\}$ with multiple seeds per scale value. The grid illustrates the progression from unconditioned generation (left) to high-fidelity reference-guided synthesis (right)."
+2,ga18b_steps_comparison.png,
+2,ga18b_timing_vs_scale.png,
+3,ga18c_block_comparison.png,"Block-level configuration comparison showing style transfer results for different layer activations within `block_0`, different block selections, and different scale intensities. All outputs use the text prompt ""a cat inside of a box"" with the Mamoeiro reference image."
+3,ga18c_layer_variation.png,
+3,ga18c_prompt_comparison.png,
+3,ga18c_reference_comparison.png,
+3,ga18c_scale_intensity.png,
+4,ga18b_prompt_specificity.png,
+4,ga18b_semantic_compatibility.png,
+4,ga18b_text_image_interaction.png,
+4,uniform_vs_block_comparison.png,"Uniform versus block-level IP-Adapter comparison. Uniform scaling ($\lambda = 0.5$) applies reference image influence to both content and style, while block-level scaling selectively transfers style while preserving text-driven content. Same prompt, reference image, and seeds used for both conditions."
+5,asr_cer_model_comparison.png,
+5,asr_inference_time.png,
+5,asr_model_comparison_bar.png,"Mean WER and CER for four ASR models (wav2vec 2.0, Whisper-tiny, Whisper-small, Whisper-medium) evaluated on 20 MINDS-14 en-AU samples at the correct 16 kHz sampling rate. Error bars indicate standard deviation across samples."
+5,asr_sampling_rate_effect.png,Sampling rate mismatch effect comparing WER at the correct 16 kHz rate versus mismatched 8 kHz rate for wav2vec 2.0 and Whisper-small. Both models exhibit severe WER degradation when audio is provided at an incorrect sampling rate.
+5,asr_wer_distribution.png,
+6,tts_consistency_waveforms.png,
+6,tts_generation_time_scaling.png,"Bark TTS generation time scaling across text inputs of varying length (short, medium, long) and domain (conversational, technical, proper-noun). Generation time scales approximately linearly with text length at a ratio of ~2.3× audio duration."
+6,tts_round_trip_wer.png,"Round-trip WER from Bark TTS generation followed by ASR transcription, evaluated across short, technical, and proper-noun text inputs. Lower WER indicates higher intelligibility of the synthesized speech."
+6,tts_text_length_analysis.png,
+7,seed_sensitivity_ga18b.png,
+7,seed_sensitivity_ga18c.png,
+7,seed_sensitivity_ga19c.png,
+7,seed_sensitivity_summary.png,"Seed sensitivity summary comparing generation time variability across eight seeds for three generative paradigms: GA18B (uniform-scale image), GA18C (block-level image), and GA19C (Bark TTS). Higher dispersion indicates greater seed sensitivity."
+Cross-Experiment,cross_modal_comparison_table.png,"Cross-modal paradigm comparison summarizing mean generation time, number of controllable parameters, stochasticity level, and evaluation approach for IP-Adapter image generation (GA18B/GA18C), ASR (GA19B), and Bark TTS (GA19C)."
+Cross-Experiment,cross_modal_comparison_table_v2.png,
+Cross-Experiment,cross_timing_comparison.png,"Cross-modal paradigm comparison summarizing mean generation time, number of controllable parameters, stochasticity level, and evaluation approach for IP-Adapter image generation (GA18B/GA18C), ASR (GA19B), and Bark TTS (GA19C)."

@@ -1,0 +1,352 @@
+
+============================================================
+[SESSION START] 2026-04-01T21:12:52.004447
+============================================================
+[NOTEBOOK] Loaded Group A full pipeline on cuda
+
+============================================================
+[GROUP A] Starting full vision workflow
+[GROUP A] Output root: /content/drive/MyDrive/kamp_hw13/hw13_experiments
+[CSV] Initialized: /content/drive/MyDrive/kamp_hw13/hw13_experiments/exp1_baselines/exp1_baselines.csv
+[CSV] Initialized: /content/drive/MyDrive/kamp_hw13/hw13_experiments/exp2_ga18b_scale/exp2_ga18b_scale.csv
+[CSV] Initialized: /content/drive/MyDrive/kamp_hw13/hw13_experiments/exp3_ga18c_blocks/exp3_ga18c_blocks.csv
+[CSV] Initialized: /content/drive/MyDrive/kamp_hw13/hw13_experiments/exp4_text_image_interaction/exp4_text_image_interaction.csv
+[CSV] Initialized: /content/drive/MyDrive/kamp_hw13/hw13_experiments/exp7_seed_sensitivity/exp7_seed_sensitivity.csv
+[GROUP A] Using caller-provided pipeline.
+[GROUP A] Exp 1: Baselines
+/usr/local/lib/python3.12/dist-packages/diffusers/pipelines/stable_diffusion_xl/pipeline_stable_diffusion_xl.py:748: FutureWarning: `upcast_vae` is deprecated and will be removed in version 1.0.0. `upcast_vae` is deprecated. Please use `pipe.vae.to(torch.float32)`. For more details, please refer to: https://github.com/huggingface/diffusers/pull/12619#issue-3606633695.
+  deprecate(
+[TIMER] GA18B scale=0.8 seed=42: 3.428s
+[IMG] ga18b_baseline_default_seed42.png: ga18b_baseline_default_seed42.png (1304.6 KB)
+[TIMER] GA18C block=baseline seed=42: 1.420s
+[IMG] ga18c_baseline_default_seed42.png: ga18c_baseline_default_seed42.png (1887.6 KB)
+[CHECKPOINT] Saved: Group A exp1
+[GROUP A] Exp 2A: Uniform scale sweep
+[TIMER] GA18B scale=0.0 seed=42: 1.414s
+[IMG] ga18b_2a_scale_0.00_seed42.png: ga18b_2a_scale_0.00_seed42.png (1899.5 KB)
+[TIMER] GA18B scale=0.0 seed=123: 1.419s
+[IMG] ga18b_2a_scale_0.00_seed123.png: ga18b_2a_scale_0.00_seed123.png (1714.4 KB)
+[TIMER] GA18B scale=0.0 seed=456: 1.416s
+[IMG] ga18b_2a_scale_0.00_seed456.png: ga18b_2a_scale_0.00_seed456.png (1779.7 KB)
+[TIMER] GA18B scale=0.1 seed=42: 1.563s
+[IMG] ga18b_2a_scale_0.10_seed42.png: ga18b_2a_scale_0.10_seed42.png (1683.9 KB)
+[TIMER] GA18B scale=0.1 seed=123: 1.554s
+[IMG] ga18b_2a_scale_0.10_seed123.png: ga18b_2a_scale_0.10_seed123.png (1524.1 KB)
+[TIMER] GA18B scale=0.1 seed=456: 1.533s
+[IMG] ga18b_2a_scale_0.10_seed456.png: ga18b_2a_scale_0.10_seed456.png (1559.1 KB)
+[TIMER] GA18B scale=0.2 seed=42: 1.582s
+[IMG] ga18b_2a_scale_0.20_seed42.png: ga18b_2a_scale_0.20_seed42.png (1474.9 KB)
+[TIMER] GA18B scale=0.2 seed=123: 1.539s
+[IMG] ga18b_2a_scale_0.20_seed123.png: ga18b_2a_scale_0.20_seed123.png (1250.0 KB)
+[TIMER] GA18B scale=0.2 seed=456: 1.553s
+[IMG] ga18b_2a_scale_0.20_seed456.png: ga18b_2a_scale_0.20_seed456.png (1322.0 KB)
+[TIMER] GA18B scale=0.3 seed=42: 1.548s
+[IMG] ga18b_2a_scale_0.30_seed42.png: ga18b_2a_scale_0.30_seed42.png (1326.9 KB)
+[TIMER] GA18B scale=0.3 seed=123: 1.583s
+[IMG] ga18b_2a_scale_0.30_seed123.png: ga18b_2a_scale_0.30_seed123.png (1221.4 KB)
+[TIMER] GA18B scale=0.3 seed=456: 1.508s
+[IMG] ga18b_2a_scale_0.30_seed456.png: ga18b_2a_scale_0.30_seed456.png (1386.2 KB)
+[TIMER] GA18B scale=0.4 seed=42: 1.533s
+[IMG] ga18b_2a_scale_0.40_seed42.png: ga18b_2a_scale_0.40_seed42.png (1337.8 KB)
+[TIMER] GA18B scale=0.4 seed=123: 1.521s
+[IMG] ga18b_2a_scale_0.40_seed123.png: ga18b_2a_scale_0.40_seed123.png (1294.4 KB)
+[TIMER] GA18B scale=0.4 seed=456: 1.529s
+[IMG] ga18b_2a_scale_0.40_seed456.png: ga18b_2a_scale_0.40_seed456.png (1438.3 KB)
+[TIMER] GA18B scale=0.5 seed=42: 1.594s
+[IMG] ga18b_2a_scale_0.50_seed42.png: ga18b_2a_scale_0.50_seed42.png (1390.3 KB)
+[TIMER] GA18B scale=0.5 seed=123: 1.615s
+[IMG] ga18b_2a_scale_0.50_seed123.png: ga18b_2a_scale_0.50_seed123.png (1370.7 KB)
+[TIMER] GA18B scale=0.5 seed=456: 1.581s
+[IMG] ga18b_2a_scale_0.50_seed456.png: ga18b_2a_scale_0.50_seed456.png (1467.0 KB)
+[TIMER] GA18B scale=0.6 seed=42: 1.966s
+[IMG] ga18b_2a_scale_0.60_seed42.png: ga18b_2a_scale_0.60_seed42.png (1365.1 KB)
+[TIMER] GA18B scale=0.6 seed=123: 1.563s
+[IMG] ga18b_2a_scale_0.60_seed123.png: ga18b_2a_scale_0.60_seed123.png (1441.0 KB)
+[TIMER] GA18B scale=0.6 seed=456: 1.553s
+[IMG] ga18b_2a_scale_0.60_seed456.png: ga18b_2a_scale_0.60_seed456.png (1455.4 KB)
+[TIMER] GA18B scale=0.7 seed=42: 1.632s
+[IMG] ga18b_2a_scale_0.70_seed42.png: ga18b_2a_scale_0.70_seed42.png (1283.4 KB)
+[TIMER] GA18B scale=0.7 seed=123: 1.540s
+[IMG] ga18b_2a_scale_0.70_seed123.png: ga18b_2a_scale_0.70_seed123.png (1429.8 KB)
+[TIMER] GA18B scale=0.7 seed=456: 1.597s
+[IMG] ga18b_2a_scale_0.70_seed456.png: ga18b_2a_scale_0.70_seed456.png (1454.1 KB)
+[TIMER] GA18B scale=0.8 seed=42: 1.564s
+[IMG] ga18b_2a_scale_0.80_seed42.png: ga18b_2a_scale_0.80_seed42.png (1304.6 KB)
+[TIMER] GA18B scale=0.8 seed=123: 1.492s
+[IMG] ga18b_2a_scale_0.80_seed123.png: ga18b_2a_scale_0.80_seed123.png (1430.6 KB)
+[TIMER] GA18B scale=0.8 seed=456: 1.512s
+[IMG] ga18b_2a_scale_0.80_seed456.png: ga18b_2a_scale_0.80_seed456.png (1459.1 KB)
+[TIMER] GA18B scale=0.9 seed=42: 1.532s
+[IMG] ga18b_2a_scale_0.90_seed42.png: ga18b_2a_scale_0.90_seed42.png (1328.0 KB)
+[TIMER] GA18B scale=0.9 seed=123: 1.500s
+[IMG] ga18b_2a_scale_0.90_seed123.png: ga18b_2a_scale_0.90_seed123.png (1390.5 KB)
+[TIMER] GA18B scale=0.9 seed=456: 1.536s
+[IMG] ga18b_2a_scale_0.90_seed456.png: ga18b_2a_scale_0.90_seed456.png (1434.5 KB)
+[TIMER] GA18B scale=1.0 seed=42: 1.500s
+[IMG] ga18b_2a_scale_1.00_seed42.png: ga18b_2a_scale_1.00_seed42.png (1331.6 KB)
+[TIMER] GA18B scale=1.0 seed=123: 1.493s
+[IMG] ga18b_2a_scale_1.00_seed123.png: ga18b_2a_scale_1.00_seed123.png (1346.1 KB)
+[TIMER] GA18B scale=1.0 seed=456: 1.491s
+[IMG] ga18b_2a_scale_1.00_seed456.png: ga18b_2a_scale_1.00_seed456.png (1398.0 KB)
+[CHECKPOINT] Saved: Group A 2a
+[GROUP A] Exp 2B: Alternative reference sweep
+[TIMER] GA18B scale=0.0 seed=42: 1.414s
+[IMG] ga18b_2b_scale_0.00_seed42.png: ga18b_2b_scale_0.00_seed42.png (1899.5 KB)
+[TIMER] GA18B scale=0.0 seed=123: 1.425s
+[IMG] ga18b_2b_scale_0.00_seed123.png: ga18b_2b_scale_0.00_seed123.png (1714.4 KB)
+[TIMER] GA18B scale=0.2 seed=42: 1.531s
+[IMG] ga18b_2b_scale_0.20_seed42.png: ga18b_2b_scale_0.20_seed42.png (1947.3 KB)
+[TIMER] GA18B scale=0.2 seed=123: 1.514s
+[IMG] ga18b_2b_scale_0.20_seed123.png: ga18b_2b_scale_0.20_seed123.png (1546.7 KB)
+[TIMER] GA18B scale=0.4 seed=42: 1.494s
+[IMG] ga18b_2b_scale_0.40_seed42.png: ga18b_2b_scale_0.40_seed42.png (1198.9 KB)
+[TIMER] GA18B scale=0.4 seed=123: 1.512s
+[IMG] ga18b_2b_scale_0.40_seed123.png: ga18b_2b_scale_0.40_seed123.png (1267.2 KB)
+[TIMER] GA18B scale=0.6 seed=42: 1.553s
+[IMG] ga18b_2b_scale_0.60_seed42.png: ga18b_2b_scale_0.60_seed42.png (1230.9 KB)
+[TIMER] GA18B scale=0.6 seed=123: 1.566s
+[IMG] ga18b_2b_scale_0.60_seed123.png: ga18b_2b_scale_0.60_seed123.png (1363.4 KB)
+[TIMER] GA18B scale=0.8 seed=42: 1.520s
+[IMG] ga18b_2b_scale_0.80_seed42.png: ga18b_2b_scale_0.80_seed42.png (1209.4 KB)
+[TIMER] GA18B scale=0.8 seed=123: 1.503s
+[IMG] ga18b_2b_scale_0.80_seed123.png: ga18b_2b_scale_0.80_seed123.png (1329.1 KB)
+[TIMER] GA18B scale=1.0 seed=42: 1.496s
+[IMG] ga18b_2b_scale_1.00_seed42.png: ga18b_2b_scale_1.00_seed42.png (1215.0 KB)
+[TIMER] GA18B scale=1.0 seed=123: 1.504s
+[IMG] ga18b_2b_scale_1.00_seed123.png: ga18b_2b_scale_1.00_seed123.png (1314.8 KB)
+[CHECKPOINT] Saved: Group A 2b
+[GROUP A] Exp 2C: Inference-step sweep
+[TIMER] GA18B scale=0.8 seed=42: 0.755s
+[IMG] ga18b_2c_steps_10_seed42.png: ga18b_2c_steps_10_seed42.png (1414.4 KB)
+[TIMER] GA18B scale=0.8 seed=123: 0.730s
+[IMG] ga18b_2c_steps_10_seed123.png: ga18b_2c_steps_10_seed123.png (1505.7 KB)
+[TIMER] GA18B scale=0.8 seed=42: 1.544s
+[IMG] ga18b_2c_steps_25_seed42.png: ga18b_2c_steps_25_seed42.png (1304.6 KB)
+[TIMER] GA18B scale=0.8 seed=123: 1.536s
+[IMG] ga18b_2c_steps_25_seed123.png: ga18b_2c_steps_25_seed123.png (1430.6 KB)
+[TIMER] GA18B scale=0.8 seed=42: 2.809s
+[IMG] ga18b_2c_steps_50_seed42.png: ga18b_2c_steps_50_seed42.png (1286.1 KB)
+[TIMER] GA18B scale=0.8 seed=123: 2.948s
+[IMG] ga18b_2c_steps_50_seed123.png: ga18b_2c_steps_50_seed123.png (1447.5 KB)
+[CHECKPOINT] Saved: Group A 2c
+[GROUP A] Exp 3A: Layer variation within block_0
+[TIMER] GA18C block=3a seed=42: 1.429s
+[IMG] ga18c_3a_layer_100_seed42.png: ga18c_3a_layer_100_seed42.png (1280.3 KB)
+[TIMER] GA18C block=3a seed=123: 1.441s
+[IMG] ga18c_3a_layer_100_seed123.png: ga18c_3a_layer_100_seed123.png (1253.2 KB)
+[TIMER] GA18C block=3a seed=456: 1.425s
+[IMG] ga18c_3a_layer_100_seed456.png: ga18c_3a_layer_100_seed456.png (1414.3 KB)
+[TIMER] GA18C block=3a seed=42: 1.423s
+[IMG] ga18c_3a_layer_010_seed42.png: ga18c_3a_layer_010_seed42.png (1887.6 KB)
+[TIMER] GA18C block=3a seed=123: 1.423s
+[IMG] ga18c_3a_layer_010_seed123.png: ga18c_3a_layer_010_seed123.png (1621.6 KB)
+[TIMER] GA18C block=3a seed=456: 1.467s
+[IMG] ga18c_3a_layer_010_seed456.png: ga18c_3a_layer_010_seed456.png (1394.4 KB)
+[TIMER] GA18C block=3a seed=42: 1.431s
+[IMG] ga18c_3a_layer_001_seed42.png: ga18c_3a_layer_001_seed42.png (1276.0 KB)
+[TIMER] GA18C block=3a seed=123: 1.463s
+[IMG] ga18c_3a_layer_001_seed123.png: ga18c_3a_layer_001_seed123.png (1272.8 KB)
+[TIMER] GA18C block=3a seed=456: 1.449s
+[IMG] ga18c_3a_layer_001_seed456.png: ga18c_3a_layer_001_seed456.png (1221.4 KB)
+[TIMER] GA18C block=3a seed=42: 1.435s
+[IMG] ga18c_3a_layer_110_seed42.png: ga18c_3a_layer_110_seed42.png (1937.9 KB)
+[TIMER] GA18C block=3a seed=123: 1.434s
+[IMG] ga18c_3a_layer_110_seed123.png: ga18c_3a_layer_110_seed123.png (1673.1 KB)
+[TIMER] GA18C block=3a seed=456: 1.460s
+[IMG] ga18c_3a_layer_110_seed456.png: ga18c_3a_layer_110_seed456.png (1475.1 KB)
+[TIMER] GA18C block=3a seed=42: 1.440s
+[IMG] ga18c_3a_layer_011_seed42.png: ga18c_3a_layer_011_seed42.png (1380.1 KB)
+[TIMER] GA18C block=3a seed=123: 1.437s
+[IMG] ga18c_3a_layer_011_seed123.png: ga18c_3a_layer_011_seed123.png (1315.2 KB)
+[TIMER] GA18C block=3a seed=456: 1.509s
+[IMG] ga18c_3a_layer_011_seed456.png: ga18c_3a_layer_011_seed456.png (1281.7 KB)
+[TIMER] GA18C block=3a seed=42: 1.465s
+[IMG] ga18c_3a_layer_111_seed42.png: ga18c_3a_layer_111_seed42.png (1642.8 KB)
+[TIMER] GA18C block=3a seed=123: 1.453s
+[IMG] ga18c_3a_layer_111_seed123.png: ga18c_3a_layer_111_seed123.png (1312.6 KB)
+[TIMER] GA18C block=3a seed=456: 1.475s
+[IMG] ga18c_3a_layer_111_seed456.png: ga18c_3a_layer_111_seed456.png (1305.1 KB)
+[CHECKPOINT] Saved: Group A 3a
+[GROUP A] Exp 3B: Block comparison
+[TIMER] GA18C block=3b seed=42: 1.426s
+[IMG] ga18c_3b_block0_seed42.png: ga18c_3b_block0_seed42.png (1887.6 KB)
+[TIMER] GA18C block=3b seed=123: 1.427s
+[IMG] ga18c_3b_block0_seed123.png: ga18c_3b_block0_seed123.png (1621.6 KB)
+[TIMER] GA18C block=3b seed=42: 1.464s
+[IMG] ga18c_3b_block1_seed42.png: ga18c_3b_block1_seed42.png (1312.8 KB)
+[TIMER] GA18C block=3b seed=123: 1.419s
+[IMG] ga18c_3b_block1_seed123.png: ga18c_3b_block1_seed123.png (1153.1 KB)
+[TIMER] GA18C block=3b seed=42: 1.421s
+[IMG] ga18c_3b_block2_seed42.png: ga18c_3b_block2_seed42.png (1293.0 KB)
+[TIMER] GA18C block=3b seed=123: 1.444s
+[IMG] ga18c_3b_block2_seed123.png: ga18c_3b_block2_seed123.png (1239.7 KB)
+[CHECKPOINT] Saved: Group A 3b
+[GROUP A] Exp 3C: Scale-intensity sweep
+[TIMER] GA18C block=3c seed=42: 1.428s
+[IMG] ga18c_3c_scale_0.25_seed42.png: ga18c_3c_scale_0.25_seed42.png (1379.3 KB)
+[TIMER] GA18C block=3c seed=123: 1.422s
+[IMG] ga18c_3c_scale_0.25_seed123.png: ga18c_3c_scale_0.25_seed123.png (1232.0 KB)
+[TIMER] GA18C block=3c seed=42: 1.448s
+[IMG] ga18c_3c_scale_0.50_seed42.png: ga18c_3c_scale_0.50_seed42.png (1623.4 KB)
+[TIMER] GA18C block=3c seed=123: 1.439s
+[IMG] ga18c_3c_scale_0.50_seed123.png: ga18c_3c_scale_0.50_seed123.png (1598.7 KB)
+[TIMER] GA18C block=3c seed=42: 1.429s
+[IMG] ga18c_3c_scale_0.75_seed42.png: ga18c_3c_scale_0.75_seed42.png (1854.8 KB)
+[TIMER] GA18C block=3c seed=123: 1.457s
+[IMG] ga18c_3c_scale_0.75_seed123.png: ga18c_3c_scale_0.75_seed123.png (1794.4 KB)
+[TIMER] GA18C block=3c seed=42: 1.420s
+[IMG] ga18c_3c_scale_1.00_seed42.png: ga18c_3c_scale_1.00_seed42.png (1887.6 KB)
+[TIMER] GA18C block=3c seed=123: 1.425s
+[IMG] ga18c_3c_scale_1.00_seed123.png: ga18c_3c_scale_1.00_seed123.png (1621.6 KB)
+[TIMER] GA18C block=3c seed=42: 1.442s
+[IMG] ga18c_3c_scale_1.50_seed42.png: ga18c_3c_scale_1.50_seed42.png (1741.8 KB)
+[TIMER] GA18C block=3c seed=123: 1.426s
+[IMG] ga18c_3c_scale_1.50_seed123.png: ga18c_3c_scale_1.50_seed123.png (1554.3 KB)
+[CHECKPOINT] Saved: Group A 3c
+[GROUP A] Exp 3D: Alternative prompts
+[TIMER] GA18C block=3d seed=42: 1.433s
+[IMG] ga18c_3d_prompt_cat_seed42.png: ga18c_3d_prompt_cat_seed42.png (1887.6 KB)
+[TIMER] GA18C block=3d seed=123: 1.456s
+[IMG] ga18c_3d_prompt_cat_seed123.png: ga18c_3d_prompt_cat_seed123.png (1621.6 KB)
+[TIMER] GA18C block=3d seed=42: 1.421s
+[IMG] ga18c_3d_prompt_mountain_seed42.png: ga18c_3d_prompt_mountain_seed42.png (1820.7 KB)
+[TIMER] GA18C block=3d seed=123: 1.437s
+[IMG] ga18c_3d_prompt_mountain_seed123.png: ga18c_3d_prompt_mountain_seed123.png (1828.4 KB)
+[TIMER] GA18C block=3d seed=42: 1.505s
+[IMG] ga18c_3d_prompt_portrait_seed42.png: ga18c_3d_prompt_portrait_seed42.png (2486.7 KB)
+[TIMER] GA18C block=3d seed=123: 1.426s
+[IMG] ga18c_3d_prompt_portrait_seed123.png: ga18c_3d_prompt_portrait_seed123.png (1957.2 KB)
+[TIMER] GA18C block=3d seed=42: 1.448s
+[IMG] ga18c_3d_prompt_cityscape_seed42.png: ga18c_3d_prompt_cityscape_seed42.png (1736.4 KB)
+[TIMER] GA18C block=3d seed=123: 1.451s
+[IMG] ga18c_3d_prompt_cityscape_seed123.png: ga18c_3d_prompt_cityscape_seed123.png (1733.4 KB)
+[CHECKPOINT] Saved: Group A 3d
+[GROUP A] Exp 3E: Alternative style reference
+[TIMER] GA18C block=3e seed=42: 1.435s
+[IMG] ga18c_3e_ref_mamoeiro_seed42.png: ga18c_3e_ref_mamoeiro_seed42.png (1887.6 KB)
+[TIMER] GA18C block=3e seed=123: 1.462s
+[IMG] ga18c_3e_ref_mamoeiro_seed123.png: ga18c_3e_ref_mamoeiro_seed123.png (1621.6 KB)
+[TIMER] GA18C block=3e seed=42: 1.478s
+[IMG] ga18c_3e_ref_items_variation_seed42.png: ga18c_3e_ref_items_variation_seed42.png (1418.2 KB)
+[TIMER] GA18C block=3e seed=123: 1.442s
+[IMG] ga18c_3e_ref_items_variation_seed123.png: ga18c_3e_ref_items_variation_seed123.png (1415.7 KB)
+[CHECKPOINT] Saved: Group A 3e
+[GROUP A] Exp 4A: Uniform scale with active text
+[TIMER] GA18B scale=0.0 seed=42: 1.415s
+[IMG] ga18b_4a_scale_0.00_seed42.png: ga18b_4a_scale_0.00_seed42.png (1213.4 KB)
+[TIMER] GA18B scale=0.0 seed=123: 1.441s
+[IMG] ga18b_4a_scale_0.00_seed123.png: ga18b_4a_scale_0.00_seed123.png (1295.6 KB)
+[TIMER] GA18B scale=0.2 seed=42: 1.589s
+[IMG] ga18b_4a_scale_0.20_seed42.png: ga18b_4a_scale_0.20_seed42.png (1349.2 KB)
+[TIMER] GA18B scale=0.2 seed=123: 1.542s
+[IMG] ga18b_4a_scale_0.20_seed123.png: ga18b_4a_scale_0.20_seed123.png (1323.4 KB)
+[TIMER] GA18B scale=0.4 seed=42: 1.635s
+[IMG] ga18b_4a_scale_0.40_seed42.png: ga18b_4a_scale_0.40_seed42.png (1183.0 KB)
+[TIMER] GA18B scale=0.4 seed=123: 1.538s
+[IMG] ga18b_4a_scale_0.40_seed123.png: ga18b_4a_scale_0.40_seed123.png (1315.9 KB)
+[TIMER] GA18B scale=0.6 seed=42: 1.568s
+[IMG] ga18b_4a_scale_0.60_seed42.png: ga18b_4a_scale_0.60_seed42.png (1350.0 KB)
+[TIMER] GA18B scale=0.6 seed=123: 1.653s
+[IMG] ga18b_4a_scale_0.60_seed123.png: ga18b_4a_scale_0.60_seed123.png (1502.1 KB)
+[TIMER] GA18B scale=0.8 seed=42: 1.632s
+[IMG] ga18b_4a_scale_0.80_seed42.png: ga18b_4a_scale_0.80_seed42.png (1333.3 KB)
+[TIMER] GA18B scale=0.8 seed=123: 1.627s
+[IMG] ga18b_4a_scale_0.80_seed123.png: ga18b_4a_scale_0.80_seed123.png (1531.6 KB)
+[TIMER] GA18B scale=1.0 seed=42: 1.624s
+[IMG] ga18b_4a_scale_1.00_seed42.png: ga18b_4a_scale_1.00_seed42.png (1270.2 KB)
+[TIMER] GA18B scale=1.0 seed=123: 1.611s
+[IMG] ga18b_4a_scale_1.00_seed123.png: ga18b_4a_scale_1.00_seed123.png (1382.4 KB)
+[CHECKPOINT] Saved: Group A 4a
+[GROUP A] Exp 4B: Prompt specificity
+[TIMER] GA18B scale=0.5 seed=42: 1.585s
+[IMG] ga18b_4b_prompt_minimal_seed42.png: ga18b_4b_prompt_minimal_seed42.png (1336.3 KB)
+[TIMER] GA18B scale=0.5 seed=123: 1.565s
+[IMG] ga18b_4b_prompt_minimal_seed123.png: ga18b_4b_prompt_minimal_seed123.png (1432.1 KB)
+[TIMER] GA18B scale=0.5 seed=42: 1.509s
+[IMG] ga18b_4b_prompt_moderate_seed42.png: ga18b_4b_prompt_moderate_seed42.png (1398.5 KB)
+[TIMER] GA18B scale=0.5 seed=123: 1.568s
+[IMG] ga18b_4b_prompt_moderate_seed123.png: ga18b_4b_prompt_moderate_seed123.png (1282.5 KB)
+[TIMER] GA18B scale=0.5 seed=42: 1.526s
+[IMG] ga18b_4b_prompt_detailed_seed42.png: ga18b_4b_prompt_detailed_seed42.png (1487.7 KB)
+[TIMER] GA18B scale=0.5 seed=123: 1.580s
+[IMG] ga18b_4b_prompt_detailed_seed123.png: ga18b_4b_prompt_detailed_seed123.png (1289.6 KB)
+[CHECKPOINT] Saved: Group A 4b
+[GROUP A] Exp 4C: Semantic compatibility
+[TIMER] GA18B scale=0.5 seed=42: 1.590s
+[IMG] ga18b_4c_prompt_compatible_seed42.png: ga18b_4c_prompt_compatible_seed42.png (1321.9 KB)
+[TIMER] GA18B scale=0.5 seed=123: 1.560s
+[IMG] ga18b_4c_prompt_compatible_seed123.png: ga18b_4c_prompt_compatible_seed123.png (1331.1 KB)
+[TIMER] GA18B scale=0.5 seed=42: 1.493s
+[IMG] ga18b_4c_prompt_incompatible_seed42.png: ga18b_4c_prompt_incompatible_seed42.png (1376.4 KB)
+[TIMER] GA18B scale=0.5 seed=123: 1.628s
+[IMG] ga18b_4c_prompt_incompatible_seed123.png: ga18b_4c_prompt_incompatible_seed123.png (1351.0 KB)
+[TIMER] GA18B scale=0.5 seed=42: 1.525s
+[IMG] ga18b_4c_prompt_neutral_seed42.png: ga18b_4c_prompt_neutral_seed42.png (1566.6 KB)
+[TIMER] GA18B scale=0.5 seed=123: 1.518s
+[IMG] ga18b_4c_prompt_neutral_seed123.png: ga18b_4c_prompt_neutral_seed123.png (1511.1 KB)
+[CHECKPOINT] Saved: Group A 4c
+[GROUP A] Exp 4D: Block-level prompt comparison
+[TIMER] GA18C block=4d seed=42: 1.447s
+[IMG] ga18c_4d_prompt_cat_seed42.png: ga18c_4d_prompt_cat_seed42.png (1887.6 KB)
+[TIMER] GA18C block=4d seed=123: 1.427s
+[IMG] ga18c_4d_prompt_cat_seed123.png: ga18c_4d_prompt_cat_seed123.png (1621.6 KB)
+[TIMER] GA18C block=4d seed=42: 1.428s
+[IMG] ga18c_4d_prompt_sunset_seed42.png: ga18c_4d_prompt_sunset_seed42.png (1898.6 KB)
+[TIMER] GA18C block=4d seed=123: 1.427s
+[IMG] ga18c_4d_prompt_sunset_seed123.png: ga18c_4d_prompt_sunset_seed123.png (1602.0 KB)
+[CHECKPOINT] Saved: Group A 4d
+[GROUP A] Exp 4E: Uniform vs. block-level comparison
+[TIMER] GA18B scale=0.5 seed=42: 1.522s
+[IMG] ga18b_4e_mode_uniform_seed42.png: ga18b_4e_mode_uniform_seed42.png (1310.7 KB)
+[TIMER] GA18C block=4e seed=42: 1.422s
+[IMG] ga18c_4e_mode_block_seed42.png: ga18c_4e_mode_block_seed42.png (1887.6 KB)
+[TIMER] GA18B scale=0.5 seed=123: 1.605s
+[IMG] ga18b_4e_mode_uniform_seed123.png: ga18b_4e_mode_uniform_seed123.png (1359.3 KB)
+[TIMER] GA18C block=4e seed=123: 1.425s
+[IMG] ga18c_4e_mode_block_seed123.png: ga18c_4e_mode_block_seed123.png (1621.6 KB)
+[TIMER] GA18B scale=0.5 seed=456: 1.533s
+[IMG] ga18b_4e_mode_uniform_seed456.png: ga18b_4e_mode_uniform_seed456.png (1255.7 KB)
+[TIMER] GA18C block=4e seed=456: 1.452s
+[IMG] ga18c_4e_mode_block_seed456.png: ga18c_4e_mode_block_seed456.png (1394.4 KB)
+[CHECKPOINT] Saved: Group A 4e
+[GROUP A] Exp 7: Seed sensitivity
+[TIMER] GA18B scale=0.8 seed=42: 1.515s
+[IMG] ga18b_seed_seed42.png: ga18b_seed_seed42.png (1304.6 KB)
+[TIMER] GA18C block=seed seed=42: 1.423s
+[IMG] ga18c_seed_seed42.png: ga18c_seed_seed42.png (1887.6 KB)
+[TIMER] GA18B scale=0.8 seed=123: 1.568s
+[IMG] ga18b_seed_seed123.png: ga18b_seed_seed123.png (1430.6 KB)
+[TIMER] GA18C block=seed seed=123: 1.429s
+[IMG] ga18c_seed_seed123.png: ga18c_seed_seed123.png (1621.6 KB)
+[TIMER] GA18B scale=0.8 seed=456: 1.525s
+[IMG] ga18b_seed_seed456.png: ga18b_seed_seed456.png (1459.1 KB)
+[TIMER] GA18C block=seed seed=456: 1.428s
+[IMG] ga18c_seed_seed456.png: ga18c_seed_seed456.png (1394.4 KB)
+[TIMER] GA18B scale=0.8 seed=789: 1.510s
+[IMG] ga18b_seed_seed789.png: ga18b_seed_seed789.png (1381.5 KB)
+[TIMER] GA18C block=seed seed=789: 1.425s
+[IMG] ga18c_seed_seed789.png: ga18c_seed_seed789.png (1581.0 KB)
+[TIMER] GA18B scale=0.8 seed=1024: 1.613s
+[IMG] ga18b_seed_seed1024.png: ga18b_seed_seed1024.png (1236.1 KB)
+[TIMER] GA18C block=seed seed=1024: 1.428s
+[IMG] ga18c_seed_seed1024.png: ga18c_seed_seed1024.png (1569.5 KB)
+[TIMER] GA18B scale=0.8 seed=2048: 1.566s
+[IMG] ga18b_seed_seed2048.png: ga18b_seed_seed2048.png (1435.8 KB)
+[TIMER] GA18C block=seed seed=2048: 1.424s
+[IMG] ga18c_seed_seed2048.png: ga18c_seed_seed2048.png (1840.8 KB)
+[TIMER] GA18B scale=0.8 seed=3000: 1.499s
+[IMG] ga18b_seed_seed3000.png: ga18b_seed_seed3000.png (1499.4 KB)
+[TIMER] GA18C block=seed seed=3000: 1.424s
+[IMG] ga18c_seed_seed3000.png: ga18c_seed_seed3000.png (1778.5 KB)
+[TIMER] GA18B scale=0.8 seed=4096: 1.601s
+[IMG] ga18b_seed_seed4096.png: ga18b_seed_seed4096.png (1530.8 KB)
+[TIMER] GA18C block=seed seed=4096: 1.418s
+[IMG] ga18c_seed_seed4096.png: ga18c_seed_seed4096.png (1840.6 KB)
+[CHECKPOINT] Saved: Group A exp7
+[CHECKPOINT] Saved: Group A complete
+[GROUP A] Complete. Generated 149 images ({'exp1': 2, 'exp2': 51, 'exp3': 46, 'exp4': 34, 'exp7': 16}).
+{'mode': 'full', 'output_root': '/content/drive/MyDrive/kamp_hw13/hw13_experiments', 'total_images': 149, 'per_experiment': {'exp1': 2, 'exp2': 51, 'exp3': 46, 'exp4': 34, 'exp7': 16}}
+
+============================================================
+[SESSION END] 2026-04-01T21:17:55.642605
+============================================================

@@ -1,0 +1,155 @@
+{
+  "total_images_generated": 149,
+  "total_audio_files_generated": 29,
+  "total_transcriptions": 164,
+  "total_gpu_time_sec": 828.184,
+  "per_paradigm_timing": {
+    "GA18B uniform": 1.58,
+    "GA18C block": 1.439,
+    "GA19B ASR": 0.276,
+    "GA19C Bark": 19.211
+  },
+  "per_paradigm_timing_details": {
+    "GA18B uniform": {
+      "sample_count": 87,
+      "mean_sec": 1.58,
+      "min_sec": 0.73,
+      "max_sec": 3.428
+    },
+    "GA18C block": {
+      "sample_count": 62,
+      "mean_sec": 1.439,
+      "min_sec": 1.418,
+      "max_sec": 1.509
+    },
+    "GA19B ASR": {
+      "sample_count": 161,
+      "mean_sec": 0.276,
+      "min_sec": 0.012,
+      "max_sec": 2.165
+    },
+    "GA19C Bark": {
+      "sample_count": 29,
+      "mean_sec": 19.211,
+      "min_sec": 5.497,
+      "max_sec": 34.465
+    }
+  },
+  "cross_paradigm_comparison": [
+    {
+      "paradigm": "GA18B uniform",
+      "output_type": "image",
+      "conditioning_signal_type": "CLIP image\nembedding",
+      "controllable_parameters_count": 5,
+      "controllable_parameters": [
+        "reference image",
+        "text prompt",
+        "IP-Adapter scale",
+        "inference steps",
+        "seed"
+      ],
+      "control_summary": "5: ref image,\nprompt, scale,\nsteps, seed",
+      "stochasticity": "stochastic",
+      "evaluation_metrics": "qualitative\nonly",
+      "computational_cost": "moderate",
+      "mean_time_seconds": 1.5795057471264369
+    },
+    {
+      "paradigm": "GA18C block",
+      "output_type": "image",
+      "conditioning_signal_type": "image embedding\n+ text tokens",
+      "controllable_parameters_count": 6,
+      "controllable_parameters": [
+        "reference image",
+        "text prompt",
+        "block config",
+        "active scale",
+        "inference steps",
+        "seed"
+      ],
+      "control_summary": "6: ref image,\nprompt, block cfg,\nscale, steps, seed",
+      "stochasticity": "stochastic",
+      "evaluation_metrics": "qualitative\nonly",
+      "computational_cost": "moderate",
+      "mean_time_seconds": 1.439306451612903
+    },
+    {
+      "paradigm": "GA19B ASR",
+      "output_type": "text\ntranscription",
+      "conditioning_signal_type": "audio waveform",
+      "controllable_parameters_count": 3,
+      "controllable_parameters": [
+        "ASR model",
+        "input audio",
+        "sampling rate"
+      ],
+      "control_summary": "3: model,\naudio, sample rate",
+      "stochasticity": "deterministic",
+      "evaluation_metrics": "WER/CER\n+ inference time",
+      "computational_cost": "low",
+      "mean_time_seconds": 0.2757577639751553
+    },
+    {
+      "paradigm": "GA19C Bark",
+      "output_type": "audio\nwaveform",
+      "conditioning_signal_type": "text tokens",
+      "controllable_parameters_count": 2,
+      "controllable_parameters": [
+        "input text",
+        "seed"
+      ],
+      "control_summary": "2: input text,\nseed",
+      "stochasticity": "stochastic",
+      "evaluation_metrics": "generation time\n+ round-trip WER",
+      "computational_cost": "very high",
+      "mean_time_seconds": 19.21148275862069
+    }
+  ],
+  "experiment_completion": {
+    "exp1_baselines": {
+      "completed": true,
+      "csv_path": "hw13_experiments/exp1_baselines/exp1_baselines.csv",
+      "csv_rows": 4
+    },
+    "exp2_ga18b_scale": {
+      "completed": true,
+      "csv_path": "hw13_experiments/exp2_ga18b_scale/exp2_ga18b_scale.csv",
+      "csv_rows": 51
+    },
+    "exp3_ga18c_blocks": {
+      "completed": true,
+      "csv_path": "hw13_experiments/exp3_ga18c_blocks/exp3_ga18c_blocks.csv",
+      "csv_rows": 46
+    },
+    "exp4_text_image_interaction": {
+      "completed": true,
+      "csv_path": "hw13_experiments/exp4_text_image_interaction/exp4_text_image_interaction.csv",
+      "csv_rows": 34
+    },
+    "exp5_ga19b_asr": {
+      "completed": true,
+      "csv_path": "hw13_experiments/exp5_ga19b_asr/exp5_ga19b_asr.csv",
+      "csv_rows": 160
+    },
+    "exp6_ga19c_tts": {
+      "completed": true,
+      "csv_path": "hw13_experiments/exp6_ga19c_tts/exp6_ga19c_tts.csv",
+      "csv_rows": 20
+    },
+    "exp7_seed_sensitivity": {
+      "completed": true,
+      "csv_path": "hw13_experiments/exp7_seed_sensitivity/exp7_seed_sensitivity.csv",
+      "csv_rows": 24
+    }
+  },
+  "source_csvs": {
+    "exp1_baselines": "hw13_experiments/exp1_baselines/exp1_baselines.csv",
+    "exp2_ga18b_scale": "hw13_experiments/exp2_ga18b_scale/exp2_ga18b_scale.csv",
+    "exp3_ga18c_blocks": "hw13_experiments/exp3_ga18c_blocks/exp3_ga18c_blocks.csv",
+    "exp4_text_image_interaction": "hw13_experiments/exp4_text_image_interaction/exp4_text_image_interaction.csv",
+    "exp5_ga19b_asr": "hw13_experiments/exp5_ga19b_asr/exp5_ga19b_asr.csv",
+    "exp6_ga19c_tts": "hw13_experiments/exp6_ga19c_tts/exp6_ga19c_tts.csv",
+    "exp7_seed_sensitivity": "hw13_experiments/exp7_seed_sensitivity/exp7_seed_sensitivity.csv"
+  },
+  "generated_at": "2026-04-02 13:05:26"
+}

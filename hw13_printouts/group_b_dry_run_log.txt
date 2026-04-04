@@ -1,0 +1,122 @@
+
+============================================================
+[SESSION START] 2026-04-01T17:45:02.159255
+============================================================
+[NOTEBOOK] Starting Group B dry run
+
+============================================================
+[GROUP B] Starting dry-run ASR workflow
+[GROUP B] Output root: /Users/noir/visual_studio/Visual_Studio__UC_Spring_26/GEN_AI/HW1/kamp_hw13/hw13_experiments/group_b_dry_run
+[CSV] Initialized: /Users/noir/visual_studio/Visual_Studio__UC_Spring_26/GEN_AI/HW1/kamp_hw13/hw13_experiments/group_b_dry_run/exp1_baselines/exp1_baselines.csv
+[CSV] Initialized: /Users/noir/visual_studio/Visual_Studio__UC_Spring_26/GEN_AI/HW1/kamp_hw13/hw13_experiments/group_b_dry_run/exp5_ga19b_asr/exp5_ga19b_asr.csv
+/Users/noir/visual_studio/Visual_Studio__UC_Spring_26/GEN_AI/HW1/kamp_hw13/.venv/lib/python3.12/site-packages/tqdm/auto.py:21: TqdmWarning: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+  from .autonotebook import tqdm as notebook_tqdm
+README.md: 0.00B [00:00, ?B/s]README.md: 23.5kB [00:00, 13.1MB/s]
+en-AU/train-00000-of-00001.parquet:   0%|          | 0.00/37.3M [00:00<?, ?B/s]en-AU/train-00000-of-00001.parquet:   0%|          | 0.00/37.3M [00:00<?, ?B/s]en-AU/train-00000-of-00001.parquet:   0%|          | 0.00/37.3M [00:00<?, ?B/s]en-AU/train-00000-of-00001.parquet:   0%|          | 0.00/37.3M [00:00<?, ?B/s]en-AU/train-00000-of-00001.parquet:   0%|          | 0.00/37.3M [00:00<?, ?B/s]en-AU/train-00000-of-00001.parquet:   0%|          | 0.00/37.3M [00:01<?, ?B/s]en-AU/train-00000-of-00001.parquet:  45%|####4     | 16.7M/37.3M [00:01<00:00, 83.5MB/s]en-AU/train-00000-of-00001.parquet: 100%|##########| 37.3M/37.3M [00:01<00:00, 59.7MB/s]en-AU/train-00000-of-00001.parquet: 100%|##########| 37.3M/37.3M [00:01<00:00, 23.2MB/s]
+Generating train split:   0%|          | 0/654 [00:00<?, ? examples/s]Generating train split: 100%|##########| 654/654 [00:00<00:00, 6527.98 examples/s]
+[GROUP B] Exp 1 GA19A: Dataset inspection printout
+Dataset({
+    features: ['path', 'audio', 'transcription', 'english_transcription', 'intent_class', 'lang_id'],
+    num_rows: 654
+})
+{'path': 'en-AU~PAY_BILL/response_4.wav', 'audio': <datasets.features._torchcodec.AudioDecoder object at 0x1355fe000>, 'transcription': 'I would like to pay my electricity bill using my card can you please assist', 'english_transcription': 'I would like to pay my electricity bill using my card can you please assist', 'intent_class': 13, 'lang_id': 2}
+pay_bill
+Dataset({
+    features: ['path', 'audio', 'transcription', 'intent_class'],
+    num_rows: 654
+})
+[GROUP B] Example 0 audio: rate=8000 Hz, duration=7.802s
+[GROUP B] Exp 1 GA19B: Default ASR baseline
+No model was supplied, defaulted to facebook/wav2vec2-base-960h and revision 22aad52 (https://huggingface.co/facebook/wav2vec2-base-960h).
+Using a pipeline without specifying a model name and revision in production is not recommended.
+config.json: 0.00B [00:00, ?B/s]config.json: 1.60kB [00:00, 2.97MB/s]
+model.safetensors:   0%|          | 0.00/378M [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/378M [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/378M [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/378M [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/378M [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/378M [00:01<?, ?B/s]model.safetensors:  18%|#7        | 67.1M/378M [00:01<00:00, 335MB/s]model.safetensors:  23%|##2       | 85.3M/378M [00:01<00:01, 192MB/s]model.safetensors:  33%|###3      | 126M/378M [00:01<00:01, 135MB/s] model.safetensors:  48%|####7     | 180M/378M [00:02<00:01, 135MB/s]model.safetensors:  63%|######2   | 236M/378M [00:02<00:01, 138MB/s]model.safetensors:  68%|######7   | 255M/378M [00:02<00:00, 128MB/s]model.safetensors:  90%|######### | 340M/378M [00:03<00:00, 116MB/s]model.safetensors: 100%|##########| 378M/378M [00:03<00:00, 127MB/s]model.safetensors: 100%|##########| 378M/378M [00:03<00:00, 99.2MB/s]
+Some weights of Wav2Vec2ForCTC were not initialized from the model checkpoint at facebook/wav2vec2-base-960h and are newly initialized: ['wav2vec2.masked_spec_embed']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+tokenizer_config.json:   0%|          | 0.00/163 [00:00<?, ?B/s]tokenizer_config.json: 100%|##########| 163/163 [00:00<00:00, 1.25MB/s]
+vocab.json:   0%|          | 0.00/291 [00:00<?, ?B/s]vocab.json: 100%|##########| 291/291 [00:00<00:00, 1.48MB/s]
+special_tokens_map.json:   0%|          | 0.00/85.0 [00:00<?, ?B/s]special_tokens_map.json: 100%|##########| 85.0/85.0 [00:00<00:00, 294kB/s]
+preprocessor_config.json:   0%|          | 0.00/159 [00:00<?, ?B/s]preprocessor_config.json: 100%|##########| 159/159 [00:00<00:00, 761kB/s]
+Device set to use cpu
+[GROUP B] Loaded baseline ASR pipeline: facebook/wav2vec2-base-960h on device -1
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=114: 0.754s
+[GROUP B] Baseline transcription: MHAVEN E SHOES WITH THE ON MY BANKING APPLE AT SHOR IT'S WRONG  TUT WHEN I TRY TO LOG IN IT KICKS CRASHING SO WHAT I'VE DONE HIS OVE TO LATED IT AND WING TOLED IT BUT IT STILL DOS THE FAINTING AND IT'S NOT WORKING AH IS THERE ANY WAY THAT YO CAN CALL ME BACK AN ERSYST ME THANK YOU
+[VRAM] Unloaded: ASR baseline facebook/wav2vec2-base-960h
+[GROUP B] Exp 5A: Multi-model comparison with facebook/wav2vec2-base-960h
+Some weights of Wav2Vec2ForCTC were not initialized from the model checkpoint at facebook/wav2vec2-base-960h and are newly initialized: ['wav2vec2.masked_spec_embed']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Device set to use cpu
+[GROUP B] Loaded ASR pipeline: facebook/wav2vec2-base-960h on device -1
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=114: 0.638s
+[GROUP B] 5A sample=114 model=facebook/wav2vec2-base-960h WER=0.459 CER=0.2089
+[VRAM] Unloaded: ASR facebook/wav2vec2-base-960h
+[GROUP B] Exp 5A: Multi-model comparison with openai/whisper-tiny
+config.json: 0.00B [00:00, ?B/s]config.json: 1.98kB [00:00, 3.81MB/s]
+model.safetensors:   0%|          | 0.00/151M [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/151M [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/151M [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/151M [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/151M [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/151M [00:01<?, ?B/s]model.safetensors:   0%|          | 0.00/151M [00:01<?, ?B/s]model.safetensors:   0%|          | 0.00/151M [00:01<?, ?B/s]model.safetensors:   0%|          | 0.00/151M [00:01<?, ?B/s]model.safetensors:   0%|          | 0.00/151M [00:01<?, ?B/s]model.safetensors: 100%|##########| 151M/151M [00:02<00:00, 758MB/s]model.safetensors: 100%|##########| 151M/151M [00:02<00:00, 75.3MB/s]
+generation_config.json: 0.00B [00:00, ?B/s]generation_config.json: 3.75kB [00:00, 6.11MB/s]
+tokenizer_config.json: 0.00B [00:00, ?B/s]tokenizer_config.json: 283kB [00:00, 110MB/s]
+vocab.json: 0.00B [00:00, ?B/s]vocab.json: 836kB [00:00, 12.4MB/s]
+tokenizer.json: 0.00B [00:00, ?B/s]tokenizer.json: 2.19MB [00:00, 21.9MB/s]tokenizer.json: 2.48MB [00:00, 21.6MB/s]
+merges.txt: 0.00B [00:00, ?B/s]merges.txt: 494kB [00:00, 15.2MB/s]
+normalizer.json: 0.00B [00:00, ?B/s]normalizer.json: 52.7kB [00:00, 47.4MB/s]
+added_tokens.json: 0.00B [00:00, ?B/s]added_tokens.json: 34.6kB [00:00, 30.5MB/s]
+special_tokens_map.json: 0.00B [00:00, ?B/s]special_tokens_map.json: 2.19kB [00:00, 2.41MB/s]
+preprocessor_config.json: 0.00B [00:00, ?B/s]preprocessor_config.json: 185kB [00:00, 30.9MB/s]
+Device set to use cpu
+[GROUP B] Loaded ASR pipeline: openai/whisper-tiny on device -1
+`return_token_timestamps` is deprecated for WhisperFeatureExtractor and will be removed in Transformers v5. Use `return_attention_mask` instead, as the number of frames can be inferred from it.
+Using custom `forced_decoder_ids` from the (generation) config. This is deprecated in favor of the `task` and `language` flags/config options.
+Transcription using a multilingual Whisper will default to language detection followed by transcription instead of translation to English. This might be a breaking change for your use case. If you want to instead always translate your audio to English, make sure to pass `language='en'`. See https://github.com/huggingface/transformers/pull/28687 for more details.
+[TIMER] GA19B model=openai/whisper-tiny sample=114: 1.591s
+[GROUP B] 5A sample=114 model=openai/whisper-tiny WER=0.0984 CER=0.0411
+[VRAM] Unloaded: ASR openai/whisper-tiny
+[GROUP B] Exp 5A: Multi-model comparison with openai/whisper-small
+config.json: 0.00B [00:00, ?B/s]config.json: 1.97kB [00:00, 8.41MB/s]
+model.safetensors:   0%|          | 0.00/967M [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/967M [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/967M [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/967M [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/967M [00:00<?, ?B/s]model.safetensors:   7%|6         | 67.0M/967M [00:01<00:02, 335MB/s]model.safetensors:  21%|##1       | 206M/967M [00:02<00:05, 138MB/s] model.safetensors:  25%|##4       | 241M/967M [00:02<00:04, 145MB/s]model.safetensors:  26%|##6       | 256M/967M [00:02<00:05, 131MB/s]model.safetensors:  30%|###       | 293M/967M [00:03<00:05, 117MB/s]model.safetensors:  33%|###3      | 321M/967M [00:03<00:05, 122MB/s]model.safetensors:  41%|####1     | 397M/967M [00:03<00:04, 124MB/s]model.safetensors:  47%|####7     | 459M/967M [00:04<00:03, 133MB/s]model.safetensors:  50%|####9     | 482M/967M [00:04<00:04, 110MB/s]model.safetensors:  61%|######    | 586M/967M [00:05<00:03, 120MB/s]model.safetensors:  67%|######7   | 648M/967M [00:06<00:03, 93.3MB/s]model.safetensors:  69%|######9   | 671M/967M [00:06<00:03, 85.7MB/s]model.safetensors:  97%|#########7| 939M/967M [00:08<00:00, 139MB/s] model.safetensors: 100%|##########| 967M/967M [00:08<00:00, 128MB/s]model.safetensors: 100%|##########| 967M/967M [00:08<00:00, 112MB/s]
+generation_config.json: 0.00B [00:00, ?B/s]generation_config.json: 3.87kB [00:00, 15.7MB/s]
+tokenizer_config.json: 0.00B [00:00, ?B/s]tokenizer_config.json: 283kB [00:00, 97.4MB/s]
+vocab.json: 0.00B [00:00, ?B/s]vocab.json: 836kB [00:00, 12.4MB/s]
+tokenizer.json: 0.00B [00:00, ?B/s]tokenizer.json: 2.02MB [00:00, 20.0MB/s]tokenizer.json: 2.48MB [00:00, 20.3MB/s]
+merges.txt: 0.00B [00:00, ?B/s]merges.txt: 494kB [00:00, 13.5MB/s]
+normalizer.json: 0.00B [00:00, ?B/s]normalizer.json: 52.7kB [00:00, 35.7MB/s]
+added_tokens.json: 0.00B [00:00, ?B/s]added_tokens.json: 34.6kB [00:00, 37.0MB/s]
+special_tokens_map.json: 0.00B [00:00, ?B/s]special_tokens_map.json: 2.19kB [00:00, 5.45MB/s]
+preprocessor_config.json: 0.00B [00:00, ?B/s]preprocessor_config.json: 185kB [00:00, 220MB/s]
+Device set to use cpu
+[GROUP B] Loaded ASR pipeline: openai/whisper-small on device -1
+[TIMER] GA19B model=openai/whisper-small sample=114: 9.054s
+[GROUP B] 5A sample=114 model=openai/whisper-small WER=0.0984 CER=0.0411
+[VRAM] Unloaded: ASR openai/whisper-small
+[GROUP B] Exp 5A: Multi-model comparison with openai/whisper-medium
+config.json: 0.00B [00:00, ?B/s]config.json: 1.99kB [00:00, 9.10MB/s]
+model.safetensors:   0%|          | 0.00/3.06G [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/3.06G [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/3.06G [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/3.06G [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/3.06G [00:00<?, ?B/s]model.safetensors:   0%|          | 0.00/3.06G [00:01<?, ?B/s]model.safetensors:   0%|          | 99.6k/3.06G [00:01<1:42:10, 498kB/s]model.safetensors:   1%|1         | 33.5M/3.06G [00:01<00:48, 62.0MB/s] model.safetensors:   4%|4         | 136M/3.06G [00:02<00:32, 91.0MB/s] model.safetensors:   9%|8         | 268M/3.06G [00:04<00:29, 93.3MB/s]model.safetensors:  11%|#         | 335M/3.06G [00:05<00:37, 72.5MB/s]model.safetensors:  18%|#7        | 537M/3.06G [00:07<00:27, 90.4MB/s]model.safetensors:  20%|#9        | 604M/3.06G [00:08<00:29, 84.2MB/s]model.safetensors:  20%|#9        | 604M/3.06G [00:22<00:29, 84.2MB/s]model.safetensors:  40%|###9      | 1.21G/3.06G [00:24<00:41, 44.3MB/s]model.safetensors:  83%|########3 | 2.55G/3.06G [00:25<00:03, 137MB/s] model.safetensors: 100%|##########| 3.06G/3.06G [00:25<00:00, 184MB/s]model.safetensors: 100%|##########| 3.06G/3.06G [00:25<00:00, 119MB/s]
+generation_config.json: 0.00B [00:00, ?B/s]generation_config.json: 3.75kB [00:00, 11.0MB/s]
+tokenizer_config.json: 0.00B [00:00, ?B/s]tokenizer_config.json: 283kB [00:00, 58.6MB/s]
+vocab.json: 0.00B [00:00, ?B/s]vocab.json: 836kB [00:00, 15.1MB/s]
+tokenizer.json: 0.00B [00:00, ?B/s]tokenizer.json: 2.35MB [00:00, 22.8MB/s]tokenizer.json: 2.48MB [00:00, 23.2MB/s]
+merges.txt: 0.00B [00:00, ?B/s]merges.txt: 494kB [00:00, 14.9MB/s]
+normalizer.json: 0.00B [00:00, ?B/s]normalizer.json: 52.7kB [00:00, 38.9MB/s]
+added_tokens.json: 0.00B [00:00, ?B/s]added_tokens.json: 34.6kB [00:00, 26.5MB/s]
+special_tokens_map.json: 0.00B [00:00, ?B/s]special_tokens_map.json: 2.19kB [00:00, 5.40MB/s]
+preprocessor_config.json: 0.00B [00:00, ?B/s]preprocessor_config.json: 185kB [00:00, 192MB/s]
+Device set to use cpu
+[GROUP B] Loaded ASR pipeline: openai/whisper-medium on device -1
+[TIMER] GA19B model=openai/whisper-medium sample=114: 27.635s
+[GROUP B] 5A sample=114 model=openai/whisper-medium WER=0.0984 CER=0.0411
+[VRAM] Unloaded: ASR openai/whisper-medium
+No model was supplied, defaulted to facebook/wav2vec2-base-960h and revision 22aad52 (https://huggingface.co/facebook/wav2vec2-base-960h).
+Using a pipeline without specifying a model name and revision in production is not recommended.
+Some weights of Wav2Vec2ForCTC were not initialized from the model checkpoint at facebook/wav2vec2-base-960h and are newly initialized: ['wav2vec2.masked_spec_embed']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Device set to use cpu
+[GROUP B] Loaded Exp 5B ASR pipeline: facebook/wav2vec2-base-960h on device -1
+[GROUP B] Exp 5B: Sampling-rate condition 8000 Hz with facebook/wav2vec2-base-960h
+[TIMER] GA19B model=facebook/wav2vec2-base-960h sample=114: 0.818s
+[GROUP B] 5B sample=114 model=facebook/wav2vec2-base-960h rate=8000Hz WER=1.0 CER=0.726
+[VRAM] Unloaded: ASR facebook/wav2vec2-base-960h
+[GROUP B] Complete. Dataset inspections=1, transcriptions=6 ({'exp1': 1, 'exp5': 5}).
+{'mode': 'dry-run', 'output_root': '/Users/noir/visual_studio/Visual_Studio__UC_Spring_26/GEN_AI/HW1/kamp_hw13/hw13_experiments/group_b_dry_run', 'dataset_inspections': 1, 'total_transcriptions': 6, 'per_experiment': {'exp1': 1, 'exp5': 5}, 'models_used': ['facebook/wav2vec2-base-960h', 'openai/whisper-medium', 'openai/whisper-small', 'openai/whisper-tiny']}
+
+============================================================
+[SESSION END] 2026-04-01T17:46:58.298882
+============================================================
